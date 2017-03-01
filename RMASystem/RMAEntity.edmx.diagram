@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="24c24d51e66442e2aea13d25690b293b" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="RMAModel.ADRESS" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.APPLICATION" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.APPTYPE" Width="1.5" PointX="11.375" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.BANKACCOUNT" Width="1.5" PointX="4.625" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.CATEGORY" Width="1.5" PointX="14.125" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.CLIENT" Width="1.5" PointX="5.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.EMAIL" Width="1.5" PointX="13.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.EMPLOYEE" Width="1.5" PointX="5.375" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.PRODUCT" Width="1.5" PointX="11.375" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.REALIZATION" Width="1.5" PointX="7.125" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.RESULT" Width="1.5" PointX="11.375" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.ROLE" Width="1.5" PointX="2" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RMAModel.STATUE" Width="1.5" PointX="9.125" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="RMAModel.FK__CLIENT__ADRESS_I__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__EMPLOYEE__ADRESS__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__APPTY__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__CLIEN__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__EMPLO__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__PRODU__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__REALI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__RESUL__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__APPLICATI__STATU__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__EMAIL__APPLICATI__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__CLIENT__BANKACCO__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__PRODUCT__CATEGOR__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__CLIENT__ROLE_ID__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="RMAModel.FK__EMPLOYEE__ROLE_I__145C0A3F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
