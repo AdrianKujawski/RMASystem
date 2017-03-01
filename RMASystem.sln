@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMASystem", "RMASystem\RMASystem.csproj", "{0818FC4F-A052-41A4-8159-42F26D976E43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMASystem.Tests", "RMASystem.Tests\RMASystem.Tests.csproj", "{E0069882-E104-4747-BD7B-8213F120A6B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0818FC4F-A052-41A4-8159-42F26D976E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0818FC4F-A052-41A4-8159-42F26D976E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0818FC4F-A052-41A4-8159-42F26D976E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0818FC4F-A052-41A4-8159-42F26D976E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0069882-E104-4747-BD7B-8213F120A6B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0069882-E104-4747-BD7B-8213F120A6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0069882-E104-4747-BD7B-8213F120A6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0069882-E104-4747-BD7B-8213F120A6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
