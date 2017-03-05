@@ -12,42 +12,42 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class APPLICATION
+    public partial class Application
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public APPLICATION()
+        public Application()
         {
-            this.EMAIL = new HashSet<EMAIL>();
+            this.Email = new HashSet<Email>();
         }
     
-        public int ID { get; set; }
-        public string NAME { get; set; }
-        public string INVOICENO { get; set; }
-        public System.DateTime DATEPURSCHASE { get; set; }
-        public string CONTENT { get; set; }
-        public string DESCRIPTION { get; set; }
-        public string EXPECTATIONS { get; set; }
-        public Nullable<decimal> COST { get; set; }
-        public Nullable<System.DateTime> DATASTART { get; set; }
-        public Nullable<System.DateTime> PENDING { get; set; }
-        public Nullable<System.DateTime> INPROGRESS { get; set; }
-        public Nullable<System.DateTime> ENDSTART { get; set; }
-        public Nullable<int> PRODUCT_ID { get; set; }
-        public Nullable<int> APPTYPE_ID { get; set; }
-        public Nullable<int> REALIZATION_ID { get; set; }
-        public Nullable<int> STATUE_ID { get; set; }
-        public Nullable<int> RESULT_ID { get; set; }
-        public Nullable<int> CLIENT_ID { get; set; }
-        public Nullable<int> EMPLOYEE_ID { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string InvoiceNo { get; set; }
+        public System.DateTime Purschace { get; set; }
+        public string Content { get; set; }
+        public string Description { get; set; }
+        public string Expectations { get; set; }
+        public Nullable<decimal> Cost { get; set; }
+        public Nullable<System.DateTime> Start { get; set; }
+        public Nullable<System.DateTime> Pending { get; set; }
+        public Nullable<System.DateTime> InProgress { get; set; }
+        public Nullable<System.DateTime> End { get; set; }
+        public Nullable<int> Product_Id { get; set; }
+        public Nullable<int> AppType_Id { get; set; }
+        public Nullable<int> Realization_Id { get; set; }
+        public Nullable<int> Statue_Id { get; set; }
+        public Nullable<int> Result_Id { get; set; }
+        public Nullable<int> Client_Id { get; set; }
+        public Nullable<int> Employee_Id { get; set; }
     
-        public virtual APPTYPE APPTYPE { get; set; }
-        public virtual CLIENT CLIENT { get; set; }
-        public virtual EMPLOYEE EMPLOYEE { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
-        public virtual REALIZATION REALIZATION { get; set; }
-        public virtual RESULT RESULT { get; set; }
-        public virtual STATUE STATUE { get; set; }
+        public virtual AppType AppType { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Realization Realization { get; set; }
+        public virtual Result Result { get; set; }
+        public virtual Statue Statue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMAIL> EMAIL { get; set; }
+        public virtual ICollection<Email> Email { get; set; }
     }
 }

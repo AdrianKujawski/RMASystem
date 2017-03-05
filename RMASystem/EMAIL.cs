@@ -12,16 +12,16 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class EMAIL
+    public partial class Email
     {
-        public int ID { get; set; }
-        public string SENDER { get; set; }
-        public string RECIPER { get; set; }
-        public string SUBJECT { get; set; }
-        public string CONTENT { get; set; }
-        public Nullable<System.DateTime> POSTDATE { get; set; }
-        public Nullable<int> APPLICATION_ID { get; set; }
+        public int Id { get; set; }
+        public string Sender { get; set; }
+        public string Reciper { get; set; }
+        public string Subject { get; set; }
+        public string Content { get; set; }
+        public Nullable<System.DateTime> PostDate { get; set; }
+        public Nullable<int> Application_Id { get; set; }
     
-        public virtual APPLICATION APPLICATION { get; set; }
+        public virtual Application Application { get; set; }
     }
 }

@@ -12,18 +12,31 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class Realization
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Realization()
+        public User()
         {
             this.Application = new HashSet<Application>();
+            this.Application1 = new HashSet<Application>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> Role_Id { get; set; }
+        public Nullable<int> Adress_Id { get; set; }
+        public Nullable<int> BankAccount_Id { get; set; }
     
+        public virtual Adress Adress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Application> Application1 { get; set; }
+        public virtual BankAccount BankAccount { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

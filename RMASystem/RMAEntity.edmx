@@ -4,774 +4,680 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ADRESS">
+      <Schema Namespace="RmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adress">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CITY" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="STREET" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ZIPCODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <EntityType Name="APPLICATION">
+        <EntityType Name="Application">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="INVOICENO" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="DATEPURSCHASE" Type="date" Nullable="false" />
-          <Property Name="CONTENT" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="text" Nullable="false" />
-          <Property Name="EXPECTATIONS" Type="text" Nullable="false" />
-          <Property Name="COST" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="DATASTART" Type="date" />
-          <Property Name="PENDING" Type="date" />
-          <Property Name="INPROGRESS" Type="date" />
-          <Property Name="ENDSTART" Type="date" />
-          <Property Name="PRODUCT_ID" Type="int" />
-          <Property Name="APPTYPE_ID" Type="int" />
-          <Property Name="REALIZATION_ID" Type="int" />
-          <Property Name="STATUE_ID" Type="int" />
-          <Property Name="RESULT_ID" Type="int" />
-          <Property Name="CLIENT_ID" Type="int" />
-          <Property Name="EMPLOYEE_ID" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="InvoiceNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Purschace" Type="date" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Expectations" Type="text" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Start" Type="date" />
+          <Property Name="Pending" Type="date" />
+          <Property Name="InProgress" Type="date" />
+          <Property Name="End" Type="date" />
+          <Property Name="Product_Id" Type="int" />
+          <Property Name="AppType_Id" Type="int" />
+          <Property Name="Realization_Id" Type="int" />
+          <Property Name="Statue_Id" Type="int" />
+          <Property Name="Result_Id" Type="int" />
+          <Property Name="Client_Id" Type="int" />
+          <Property Name="Employee_Id" Type="int" />
         </EntityType>
-        <EntityType Name="APPTYPE">
+        <EntityType Name="AppType">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="BANKACCOUNT">
+        <EntityType Name="BankAccount">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BANKNAME" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ACCOUNTNUMBER" Type="varchar" MaxLength="26" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="26" Nullable="false" />
         </EntityType>
-        <EntityType Name="CATEGORY">
+        <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="CLIENT">
+        <EntityType Name="Email">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIRSTNAME" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="LASTNAME" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="PHONE" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ROLE_ID" Type="int" />
-          <Property Name="ADRESS_ID" Type="int" />
-          <Property Name="BANKACCOUNT_ID" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Reciper" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="255" />
+          <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="PostDate" Type="date" />
+          <Property Name="Application_Id" Type="int" />
         </EntityType>
-        <EntityType Name="EMAIL">
+        <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SENDER" Type="varchar" MaxLength="120" Nullable="false" />
-          <Property Name="RECIPER" Type="varchar" MaxLength="120" Nullable="false" />
-          <Property Name="SUBJECT" Type="varchar" MaxLength="255" />
-          <Property Name="CONTENT" Type="text" Nullable="false" />
-          <Property Name="POSTDATE" Type="date" />
-          <Property Name="APPLICATION_ID" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category_Id" Type="int" />
         </EntityType>
-        <EntityType Name="EMPLOYEE">
+        <EntityType Name="Realization">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIRSTNAME" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="LASTNAME" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="EMAIL" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PASSWORD" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="ROLE_ID" Type="int" />
-          <Property Name="ADRESS_ID" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="PRODUCT">
+        <EntityType Name="Result">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CATEGORY_ID" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="REALIZATION">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="RESULT">
+        <EntityType Name="Statue">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="300" />
         </EntityType>
-        <EntityType Name="ROLE">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Role_Id" Type="int" />
+          <Property Name="Adress_Id" Type="int" />
+          <Property Name="BankAccount_Id" Type="int" />
         </EntityType>
-        <EntityType Name="STATUE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar" MaxLength="300" />
-        </EntityType>
-        <Association Name="FK__APPLICATI__APPTY__2C3393D0">
-          <End Role="APPTYPE" Type="Self.APPTYPE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__AppTy__7C4F7684">
+          <End Role="AppType" Type="Self.AppType" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="APPTYPE">
-              <PropertyRef Name="ID" />
+            <Principal Role="AppType">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="APPTYPE_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="AppType_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__CLIEN__300424B4">
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Clien__00200768">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CLIENT">
-              <PropertyRef Name="ID" />
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="CLIENT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Client_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__EMPLO__30F848ED">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Emplo__01142BA1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="ID" />
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="EMPLOYEE_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Employee_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__PRODU__2B3F6F97">
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Produ__7B5B524B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PRODUCT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="PRODUCT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Product_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__REALI__2D27B809">
-          <End Role="REALIZATION" Type="Self.REALIZATION" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Reali__7D439ABD">
+          <End Role="Realization" Type="Self.Realization" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REALIZATION">
-              <PropertyRef Name="ID" />
+            <Principal Role="Realization">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="REALIZATION_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Realization_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__RESUL__2F10007B">
-          <End Role="RESULT" Type="Self.RESULT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Resul__7F2BE32F">
+          <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RESULT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Result">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="RESULT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Result_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__STATU__2E1BDC42">
-          <End Role="STATUE" Type="Self.STATUE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Statu__7E37BEF6">
+          <End Role="Statue" Type="Self.Statue" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="STATUE">
-              <PropertyRef Name="ID" />
+            <Principal Role="Statue">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="STATUE_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Statue_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CLIENT__ADRESS_I__1B0907CE">
-          <End Role="ADRESS" Type="Self.ADRESS" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+        <Association Name="FK__Email__Applicati__03F0984C">
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADRESS">
-              <PropertyRef Name="ID" />
+            <Principal Role="Application">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="ADRESS_ID" />
+            <Dependent Role="Email">
+              <PropertyRef Name="Application_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CLIENT__BANKACCO__1BFD2C07">
-          <End Role="BANKACCOUNT" Type="Self.BANKACCOUNT" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+        <Association Name="FK__Product__Categor__656C112C">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BANKACCOUNT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="BANKACCOUNT_ID" />
+            <Dependent Role="Product">
+              <PropertyRef Name="Category_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CLIENT__ROLE_ID__1A14E395">
-          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+        <Association Name="FK__User__Adress_Id__5FB337D6">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID" />
+            <Principal Role="Adress">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="ROLE_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="Adress_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMAIL__APPLICATI__33D4B598">
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="0..1" />
-          <End Role="EMAIL" Type="Self.EMAIL" Multiplicity="*" />
+        <Association Name="FK__User__BankAccoun__60A75C0F">
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="APPLICATION">
-              <PropertyRef Name="ID" />
+            <Principal Role="BankAccount">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="EMAIL">
-              <PropertyRef Name="APPLICATION_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="BankAccount_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLOYEE__ADRESS__15502E78">
-          <End Role="ADRESS" Type="Self.ADRESS" Multiplicity="0..1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+        <Association Name="FK__User__Role_Id__5EBF139D">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADRESS">
-              <PropertyRef Name="ID" />
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="EMPLOYEE">
-              <PropertyRef Name="ADRESS_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="Role_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLOYEE__ROLE_I__145C0A3F">
-          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EMPLOYEE">
-              <PropertyRef Name="ROLE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PRODUCT__CATEGOR__20C1E124">
-          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORY">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="CATEGORY_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="RMAModelStoreContainer">
-          <EntitySet Name="ADRESS" EntityType="Self.ADRESS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="APPLICATION" EntityType="Self.APPLICATION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="APPTYPE" EntityType="Self.APPTYPE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BANKACCOUNT" EntityType="Self.BANKACCOUNT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CLIENT" EntityType="Self.CLIENT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EMAIL" EntityType="Self.EMAIL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="REALIZATION" EntityType="Self.REALIZATION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RESULT" EntityType="Self.RESULT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="STATUE" EntityType="Self.STATUE" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__APPLICATI__APPTY__2C3393D0" Association="Self.FK__APPLICATI__APPTY__2C3393D0">
-            <End Role="APPTYPE" EntitySet="APPTYPE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+        <EntityContainer Name="RmaModelStoreContainer">
+          <EntitySet Name="Adress" EntityType="Self.Adress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppType" EntityType="Self.AppType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realization" EntityType="Self.Realization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statue" EntityType="Self.Statue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Applicati__AppTy__7C4F7684" Association="Self.FK__Applicati__AppTy__7C4F7684">
+            <End Role="AppType" EntitySet="AppType" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__CLIEN__300424B4" Association="Self.FK__APPLICATI__CLIEN__300424B4">
-            <End Role="CLIENT" EntitySet="CLIENT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Clien__00200768" Association="Self.FK__Applicati__Clien__00200768">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__EMPLO__30F848ED" Association="Self.FK__APPLICATI__EMPLO__30F848ED">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Emplo__01142BA1" Association="Self.FK__Applicati__Emplo__01142BA1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__PRODU__2B3F6F97" Association="Self.FK__APPLICATI__PRODU__2B3F6F97">
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Produ__7B5B524B" Association="Self.FK__Applicati__Produ__7B5B524B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__REALI__2D27B809" Association="Self.FK__APPLICATI__REALI__2D27B809">
-            <End Role="REALIZATION" EntitySet="REALIZATION" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Reali__7D439ABD" Association="Self.FK__Applicati__Reali__7D439ABD">
+            <End Role="Realization" EntitySet="Realization" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__RESUL__2F10007B" Association="Self.FK__APPLICATI__RESUL__2F10007B">
-            <End Role="RESULT" EntitySet="RESULT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Resul__7F2BE32F" Association="Self.FK__Applicati__Resul__7F2BE32F">
+            <End Role="Result" EntitySet="Result" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__STATU__2E1BDC42" Association="Self.FK__APPLICATI__STATU__2E1BDC42">
-            <End Role="STATUE" EntitySet="STATUE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Statu__7E37BEF6" Association="Self.FK__Applicati__Statu__7E37BEF6">
+            <End Role="Statue" EntitySet="Statue" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__CLIENT__ADRESS_I__1B0907CE" Association="Self.FK__CLIENT__ADRESS_I__1B0907CE">
-            <End Role="ADRESS" EntitySet="ADRESS" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
+          <AssociationSet Name="FK__Email__Applicati__03F0984C" Association="Self.FK__Email__Applicati__03F0984C">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Email" EntitySet="Email" />
           </AssociationSet>
-          <AssociationSet Name="FK__CLIENT__BANKACCO__1BFD2C07" Association="Self.FK__CLIENT__BANKACCO__1BFD2C07">
-            <End Role="BANKACCOUNT" EntitySet="BANKACCOUNT" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
+          <AssociationSet Name="FK__Product__Categor__656C112C" Association="Self.FK__Product__Categor__656C112C">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__CLIENT__ROLE_ID__1A14E395" Association="Self.FK__CLIENT__ROLE_ID__1A14E395">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
+          <AssociationSet Name="FK__User__Adress_Id__5FB337D6" Association="Self.FK__User__Adress_Id__5FB337D6">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMAIL__APPLICATI__33D4B598" Association="Self.FK__EMAIL__APPLICATI__33D4B598">
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
-            <End Role="EMAIL" EntitySet="EMAIL" />
+          <AssociationSet Name="FK__User__BankAccoun__60A75C0F" Association="Self.FK__User__BankAccoun__60A75C0F">
+            <End Role="BankAccount" EntitySet="BankAccount" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMPLOYEE__ADRESS__15502E78" Association="Self.FK__EMPLOYEE__ADRESS__15502E78">
-            <End Role="ADRESS" EntitySet="ADRESS" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EMPLOYEE__ROLE_I__145C0A3F" Association="Self.FK__EMPLOYEE__ROLE_I__145C0A3F">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__CATEGOR__20C1E124" Association="Self.FK__PRODUCT__CATEGOR__20C1E124">
-            <End Role="CATEGORY" EntitySet="CATEGORY" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          <AssociationSet Name="FK__User__Role_Id__5EBF139D" Association="Self.FK__User__Role_Id__5EBF139D">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ADRESS">
+      <Schema Namespace="RmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adress">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CITY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="STREET" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ZIPCODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CLIENT" Relationship="Self.FK__CLIENT__ADRESS_I__1B0907CE" FromRole="ADRESS" ToRole="CLIENT" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK__EMPLOYEE__ADRESS__15502E78" FromRole="ADRESS" ToRole="EMPLOYEE" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__Adress_Id__5FB337D6" FromRole="Adress" ToRole="User" />
         </EntityType>
-        <EntityType Name="APPLICATION">
+        <EntityType Name="Application">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="INVOICENO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DATEPURSCHASE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CONTENT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EXPECTATIONS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="COST" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="DATASTART" Type="DateTime" Precision="0" />
-          <Property Name="PENDING" Type="DateTime" Precision="0" />
-          <Property Name="INPROGRESS" Type="DateTime" Precision="0" />
-          <Property Name="ENDSTART" Type="DateTime" Precision="0" />
-          <Property Name="PRODUCT_ID" Type="Int32" />
-          <Property Name="APPTYPE_ID" Type="Int32" />
-          <Property Name="REALIZATION_ID" Type="Int32" />
-          <Property Name="STATUE_ID" Type="Int32" />
-          <Property Name="RESULT_ID" Type="Int32" />
-          <Property Name="CLIENT_ID" Type="Int32" />
-          <Property Name="EMPLOYEE_ID" Type="Int32" />
-          <NavigationProperty Name="APPTYPE" Relationship="Self.FK__APPLICATI__APPTY__2C3393D0" FromRole="APPLICATION" ToRole="APPTYPE" />
-          <NavigationProperty Name="CLIENT" Relationship="Self.FK__APPLICATI__CLIEN__300424B4" FromRole="APPLICATION" ToRole="CLIENT" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK__APPLICATI__EMPLO__30F848ED" FromRole="APPLICATION" ToRole="EMPLOYEE" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__APPLICATI__PRODU__2B3F6F97" FromRole="APPLICATION" ToRole="PRODUCT" />
-          <NavigationProperty Name="REALIZATION" Relationship="Self.FK__APPLICATI__REALI__2D27B809" FromRole="APPLICATION" ToRole="REALIZATION" />
-          <NavigationProperty Name="RESULT" Relationship="Self.FK__APPLICATI__RESUL__2F10007B" FromRole="APPLICATION" ToRole="RESULT" />
-          <NavigationProperty Name="STATUE" Relationship="Self.FK__APPLICATI__STATU__2E1BDC42" FromRole="APPLICATION" ToRole="STATUE" />
-          <NavigationProperty Name="EMAIL" Relationship="Self.FK__EMAIL__APPLICATI__33D4B598" FromRole="APPLICATION" ToRole="EMAIL" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Purschace" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expectations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Start" Type="DateTime" Precision="0" />
+          <Property Name="Pending" Type="DateTime" Precision="0" />
+          <Property Name="InProgress" Type="DateTime" Precision="0" />
+          <Property Name="End" Type="DateTime" Precision="0" />
+          <Property Name="Product_Id" Type="Int32" />
+          <Property Name="AppType_Id" Type="Int32" />
+          <Property Name="Realization_Id" Type="Int32" />
+          <Property Name="Statue_Id" Type="Int32" />
+          <Property Name="Result_Id" Type="Int32" />
+          <Property Name="Client_Id" Type="Int32" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <NavigationProperty Name="AppType" Relationship="Self.FK__Applicati__AppTy__7C4F7684" FromRole="Application" ToRole="AppType" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Applicati__Clien__00200768" FromRole="Application" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__Applicati__Emplo__01142BA1" FromRole="Application" ToRole="User" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Applicati__Produ__7B5B524B" FromRole="Application" ToRole="Product" />
+          <NavigationProperty Name="Realization" Relationship="Self.FK__Applicati__Reali__7D439ABD" FromRole="Application" ToRole="Realization" />
+          <NavigationProperty Name="Result" Relationship="Self.FK__Applicati__Resul__7F2BE32F" FromRole="Application" ToRole="Result" />
+          <NavigationProperty Name="Statue" Relationship="Self.FK__Applicati__Statu__7E37BEF6" FromRole="Application" ToRole="Statue" />
+          <NavigationProperty Name="Email" Relationship="Self.FK__Email__Applicati__03F0984C" FromRole="Application" ToRole="Email" />
         </EntityType>
-        <EntityType Name="APPTYPE">
+        <EntityType Name="AppType">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__APPTY__2C3393D0" FromRole="APPTYPE" ToRole="APPLICATION" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__AppTy__7C4F7684" FromRole="AppType" ToRole="Application" />
         </EntityType>
-        <EntityType Name="BANKACCOUNT">
+        <EntityType Name="BankAccount">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BANKNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ACCOUNTNUMBER" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CLIENT" Relationship="Self.FK__CLIENT__BANKACCO__1BFD2C07" FromRole="BANKACCOUNT" ToRole="CLIENT" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__BankAccoun__60A75C0F" FromRole="BankAccount" ToRole="User" />
         </EntityType>
-        <EntityType Name="CATEGORY">
+        <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__PRODUCT__CATEGOR__20C1E124" FromRole="CATEGORY" ToRole="PRODUCT" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__Categor__656C112C" FromRole="Category" ToRole="Product" />
         </EntityType>
-        <EntityType Name="CLIENT">
+        <EntityType Name="Email">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIRSTNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LASTNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ROLE_ID" Type="Int32" />
-          <Property Name="ADRESS_ID" Type="Int32" />
-          <Property Name="BANKACCOUNT_ID" Type="Int32" />
-          <NavigationProperty Name="ADRESS" Relationship="Self.FK__CLIENT__ADRESS_I__1B0907CE" FromRole="CLIENT" ToRole="ADRESS" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__CLIEN__300424B4" FromRole="CLIENT" ToRole="APPLICATION" />
-          <NavigationProperty Name="BANKACCOUNT" Relationship="Self.FK__CLIENT__BANKACCO__1BFD2C07" FromRole="CLIENT" ToRole="BANKACCOUNT" />
-          <NavigationProperty Name="ROLE" Relationship="Self.FK__CLIENT__ROLE_ID__1A14E395" FromRole="CLIENT" ToRole="ROLE" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reciper" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostDate" Type="DateTime" Precision="0" />
+          <Property Name="Application_Id" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Email__Applicati__03F0984C" FromRole="Email" ToRole="Application" />
         </EntityType>
-        <EntityType Name="EMAIL">
+        <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SENDER" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RECIPER" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SUBJECT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="POSTDATE" Type="DateTime" Precision="0" />
-          <Property Name="APPLICATION_ID" Type="Int32" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__EMAIL__APPLICATI__33D4B598" FromRole="EMAIL" ToRole="APPLICATION" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Category_Id" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Produ__7B5B524B" FromRole="Product" ToRole="Application" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__656C112C" FromRole="Product" ToRole="Category" />
         </EntityType>
-        <EntityType Name="EMPLOYEE">
+        <EntityType Name="Realization">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIRSTNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LASTNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ROLE_ID" Type="Int32" />
-          <Property Name="ADRESS_ID" Type="Int32" />
-          <NavigationProperty Name="ADRESS" Relationship="Self.FK__EMPLOYEE__ADRESS__15502E78" FromRole="EMPLOYEE" ToRole="ADRESS" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__EMPLO__30F848ED" FromRole="EMPLOYEE" ToRole="APPLICATION" />
-          <NavigationProperty Name="ROLE" Relationship="Self.FK__EMPLOYEE__ROLE_I__145C0A3F" FromRole="EMPLOYEE" ToRole="ROLE" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Reali__7D439ABD" FromRole="Realization" ToRole="Application" />
         </EntityType>
-        <EntityType Name="PRODUCT">
+        <EntityType Name="Result">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CATEGORY_ID" Type="Int32" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__PRODU__2B3F6F97" FromRole="PRODUCT" ToRole="APPLICATION" />
-          <NavigationProperty Name="CATEGORY" Relationship="Self.FK__PRODUCT__CATEGOR__20C1E124" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Resul__7F2BE32F" FromRole="Result" ToRole="Application" />
         </EntityType>
-        <EntityType Name="REALIZATION">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__REALI__2D27B809" FromRole="REALIZATION" ToRole="APPLICATION" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__Role_Id__5EBF139D" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="RESULT">
+        <EntityType Name="Statue">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__RESUL__2F10007B" FromRole="RESULT" ToRole="APPLICATION" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Statu__7E37BEF6" FromRole="Statue" ToRole="Application" />
         </EntityType>
-        <EntityType Name="ROLE">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CLIENT" Relationship="Self.FK__CLIENT__ROLE_ID__1A14E395" FromRole="ROLE" ToRole="CLIENT" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK__EMPLOYEE__ROLE_I__145C0A3F" FromRole="ROLE" ToRole="EMPLOYEE" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role_Id" Type="Int32" />
+          <Property Name="Adress_Id" Type="Int32" />
+          <Property Name="BankAccount_Id" Type="Int32" />
+          <NavigationProperty Name="Adress" Relationship="Self.FK__User__Adress_Id__5FB337D6" FromRole="User" ToRole="Adress" />
+          <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Clien__00200768" FromRole="User" ToRole="Application" />
+          <NavigationProperty Name="Application1" Relationship="Self.FK__Applicati__Emplo__01142BA1" FromRole="User" ToRole="Application" />
+          <NavigationProperty Name="BankAccount" Relationship="Self.FK__User__BankAccoun__60A75C0F" FromRole="User" ToRole="BankAccount" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__User__Role_Id__5EBF139D" FromRole="User" ToRole="Role" />
         </EntityType>
-        <EntityType Name="STATUE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="APPLICATION" Relationship="Self.FK__APPLICATI__STATU__2E1BDC42" FromRole="STATUE" ToRole="APPLICATION" />
-        </EntityType>
-        <Association Name="FK__CLIENT__ADRESS_I__1B0907CE">
-          <End Role="ADRESS" Type="Self.ADRESS" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+        <Association Name="FK__User__Adress_Id__5FB337D6">
+          <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADRESS">
-              <PropertyRef Name="ID" />
+            <Principal Role="Adress">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="ADRESS_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="Adress_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMPLOYEE__ADRESS__15502E78">
-          <End Role="ADRESS" Type="Self.ADRESS" Multiplicity="0..1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+        <Association Name="FK__Applicati__AppTy__7C4F7684">
+          <End Role="AppType" Type="Self.AppType" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ADRESS">
-              <PropertyRef Name="ID" />
+            <Principal Role="AppType">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="EMPLOYEE">
-              <PropertyRef Name="ADRESS_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="AppType_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__APPTY__2C3393D0">
-          <End Role="APPTYPE" Type="Self.APPTYPE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Clien__00200768">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="APPTYPE">
-              <PropertyRef Name="ID" />
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="APPTYPE_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Client_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__CLIEN__300424B4">
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Emplo__01142BA1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CLIENT">
-              <PropertyRef Name="ID" />
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="CLIENT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Employee_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__EMPLO__30F848ED">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Produ__7B5B524B">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="ID" />
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="EMPLOYEE_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Product_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__PRODU__2B3F6F97">
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Reali__7D439ABD">
+          <End Role="Realization" Type="Self.Realization" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PRODUCT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Realization">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="PRODUCT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Realization_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__REALI__2D27B809">
-          <End Role="REALIZATION" Type="Self.REALIZATION" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Resul__7F2BE32F">
+          <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="REALIZATION">
-              <PropertyRef Name="ID" />
+            <Principal Role="Result">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="REALIZATION_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Result_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__RESUL__2F10007B">
-          <End Role="RESULT" Type="Self.RESULT" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Applicati__Statu__7E37BEF6">
+          <End Role="Statue" Type="Self.Statue" Multiplicity="0..1" />
+          <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="RESULT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Statue">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="RESULT_ID" />
+            <Dependent Role="Application">
+              <PropertyRef Name="Statue_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__APPLICATI__STATU__2E1BDC42">
-          <End Role="STATUE" Type="Self.STATUE" Multiplicity="0..1" />
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="*" />
+        <Association Name="FK__Email__Applicati__03F0984C">
+          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="STATUE">
-              <PropertyRef Name="ID" />
+            <Principal Role="Application">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="APPLICATION">
-              <PropertyRef Name="STATUE_ID" />
+            <Dependent Role="Email">
+              <PropertyRef Name="Application_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EMAIL__APPLICATI__33D4B598">
-          <End Role="APPLICATION" Type="Self.APPLICATION" Multiplicity="0..1" />
-          <End Role="EMAIL" Type="Self.EMAIL" Multiplicity="*" />
+        <Association Name="FK__User__BankAccoun__60A75C0F">
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="APPLICATION">
-              <PropertyRef Name="ID" />
+            <Principal Role="BankAccount">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="EMAIL">
-              <PropertyRef Name="APPLICATION_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="BankAccount_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CLIENT__BANKACCO__1BFD2C07">
-          <End Role="BANKACCOUNT" Type="Self.BANKACCOUNT" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
+        <Association Name="FK__Product__Categor__656C112C">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BANKACCOUNT">
-              <PropertyRef Name="ID" />
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="BANKACCOUNT_ID" />
+            <Dependent Role="Product">
+              <PropertyRef Name="Category_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PRODUCT__CATEGOR__20C1E124">
-          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+        <Association Name="FK__User__Role_Id__5EBF139D">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CATEGORY">
-              <PropertyRef Name="ID" />
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="CATEGORY_ID" />
+            <Dependent Role="User">
+              <PropertyRef Name="Role_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CLIENT__ROLE_ID__1A14E395">
-          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
-          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CLIENT">
-              <PropertyRef Name="ROLE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__EMPLOYEE__ROLE_I__145C0A3F">
-          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EMPLOYEE">
-              <PropertyRef Name="ROLE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="RMAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ADRESS" EntityType="Self.ADRESS" />
-          <EntitySet Name="APPLICATION" EntityType="Self.APPLICATION" />
-          <EntitySet Name="APPTYPE" EntityType="Self.APPTYPE" />
-          <EntitySet Name="BANKACCOUNT" EntityType="Self.BANKACCOUNT" />
-          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
-          <EntitySet Name="CLIENT" EntityType="Self.CLIENT" />
-          <EntitySet Name="EMAIL" EntityType="Self.EMAIL" />
-          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
-          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
-          <EntitySet Name="REALIZATION" EntityType="Self.REALIZATION" />
-          <EntitySet Name="RESULT" EntityType="Self.RESULT" />
-          <EntitySet Name="ROLE" EntityType="Self.ROLE" />
-          <EntitySet Name="STATUE" EntityType="Self.STATUE" />
-          <AssociationSet Name="FK__CLIENT__ADRESS_I__1B0907CE" Association="Self.FK__CLIENT__ADRESS_I__1B0907CE">
-            <End Role="ADRESS" EntitySet="ADRESS" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
+        <EntityContainer Name="RmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adress" EntityType="Self.Adress" />
+          <EntitySet Name="Application" EntityType="Self.Application" />
+          <EntitySet Name="AppType" EntityType="Self.AppType" />
+          <EntitySet Name="BankAccount" EntityType="Self.BankAccount" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Email" EntityType="Self.Email" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Realization" EntityType="Self.Realization" />
+          <EntitySet Name="Result" EntityType="Self.Result" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Statue" EntityType="Self.Statue" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__User__Adress_Id__5FB337D6" Association="Self.FK__User__Adress_Id__5FB337D6">
+            <End Role="Adress" EntitySet="Adress" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMPLOYEE__ADRESS__15502E78" Association="Self.FK__EMPLOYEE__ADRESS__15502E78">
-            <End Role="ADRESS" EntitySet="ADRESS" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          <AssociationSet Name="FK__Applicati__AppTy__7C4F7684" Association="Self.FK__Applicati__AppTy__7C4F7684">
+            <End Role="AppType" EntitySet="AppType" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__APPTY__2C3393D0" Association="Self.FK__APPLICATI__APPTY__2C3393D0">
-            <End Role="APPTYPE" EntitySet="APPTYPE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Clien__00200768" Association="Self.FK__Applicati__Clien__00200768">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__CLIEN__300424B4" Association="Self.FK__APPLICATI__CLIEN__300424B4">
-            <End Role="CLIENT" EntitySet="CLIENT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Emplo__01142BA1" Association="Self.FK__Applicati__Emplo__01142BA1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__EMPLO__30F848ED" Association="Self.FK__APPLICATI__EMPLO__30F848ED">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Produ__7B5B524B" Association="Self.FK__Applicati__Produ__7B5B524B">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__PRODU__2B3F6F97" Association="Self.FK__APPLICATI__PRODU__2B3F6F97">
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Reali__7D439ABD" Association="Self.FK__Applicati__Reali__7D439ABD">
+            <End Role="Realization" EntitySet="Realization" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__REALI__2D27B809" Association="Self.FK__APPLICATI__REALI__2D27B809">
-            <End Role="REALIZATION" EntitySet="REALIZATION" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Resul__7F2BE32F" Association="Self.FK__Applicati__Resul__7F2BE32F">
+            <End Role="Result" EntitySet="Result" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__RESUL__2F10007B" Association="Self.FK__APPLICATI__RESUL__2F10007B">
-            <End Role="RESULT" EntitySet="RESULT" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Applicati__Statu__7E37BEF6" Association="Self.FK__Applicati__Statu__7E37BEF6">
+            <End Role="Statue" EntitySet="Statue" />
+            <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__APPLICATI__STATU__2E1BDC42" Association="Self.FK__APPLICATI__STATU__2E1BDC42">
-            <End Role="STATUE" EntitySet="STATUE" />
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
+          <AssociationSet Name="FK__Email__Applicati__03F0984C" Association="Self.FK__Email__Applicati__03F0984C">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Email" EntitySet="Email" />
           </AssociationSet>
-          <AssociationSet Name="FK__EMAIL__APPLICATI__33D4B598" Association="Self.FK__EMAIL__APPLICATI__33D4B598">
-            <End Role="APPLICATION" EntitySet="APPLICATION" />
-            <End Role="EMAIL" EntitySet="EMAIL" />
+          <AssociationSet Name="FK__User__BankAccoun__60A75C0F" Association="Self.FK__User__BankAccoun__60A75C0F">
+            <End Role="BankAccount" EntitySet="BankAccount" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK__CLIENT__BANKACCO__1BFD2C07" Association="Self.FK__CLIENT__BANKACCO__1BFD2C07">
-            <End Role="BANKACCOUNT" EntitySet="BANKACCOUNT" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
+          <AssociationSet Name="FK__Product__Categor__656C112C" Association="Self.FK__Product__Categor__656C112C">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__CATEGOR__20C1E124" Association="Self.FK__PRODUCT__CATEGOR__20C1E124">
-            <End Role="CATEGORY" EntitySet="CATEGORY" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CLIENT__ROLE_ID__1A14E395" Association="Self.FK__CLIENT__ROLE_ID__1A14E395">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="CLIENT" EntitySet="CLIENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__EMPLOYEE__ROLE_I__145C0A3F" Association="Self.FK__EMPLOYEE__ROLE_I__145C0A3F">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          <AssociationSet Name="FK__User__Role_Id__5EBF139D" Association="Self.FK__User__Role_Id__5EBF139D">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -779,146 +685,133 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RMAModelStoreContainer" CdmEntityContainer="RMAEntities">
-          <EntitySetMapping Name="ADRESS">
-            <EntityTypeMapping TypeName="RMAModel.ADRESS">
-              <MappingFragment StoreEntitySet="ADRESS">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CITY" ColumnName="CITY" />
-                <ScalarProperty Name="STREET" ColumnName="STREET" />
-                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+        <EntityContainerMapping StorageEntityContainer="RmaModelStoreContainer" CdmEntityContainer="RmaEntities">
+          <EntitySetMapping Name="Adress">
+            <EntityTypeMapping TypeName="RmaModel.Adress">
+              <MappingFragment StoreEntitySet="Adress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="APPLICATION">
-            <EntityTypeMapping TypeName="RMAModel.APPLICATION">
-              <MappingFragment StoreEntitySet="APPLICATION">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="INVOICENO" ColumnName="INVOICENO" />
-                <ScalarProperty Name="DATEPURSCHASE" ColumnName="DATEPURSCHASE" />
-                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="EXPECTATIONS" ColumnName="EXPECTATIONS" />
-                <ScalarProperty Name="COST" ColumnName="COST" />
-                <ScalarProperty Name="DATASTART" ColumnName="DATASTART" />
-                <ScalarProperty Name="PENDING" ColumnName="PENDING" />
-                <ScalarProperty Name="INPROGRESS" ColumnName="INPROGRESS" />
-                <ScalarProperty Name="ENDSTART" ColumnName="ENDSTART" />
-                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
-                <ScalarProperty Name="APPTYPE_ID" ColumnName="APPTYPE_ID" />
-                <ScalarProperty Name="REALIZATION_ID" ColumnName="REALIZATION_ID" />
-                <ScalarProperty Name="STATUE_ID" ColumnName="STATUE_ID" />
-                <ScalarProperty Name="RESULT_ID" ColumnName="RESULT_ID" />
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <EntitySetMapping Name="Application">
+            <EntityTypeMapping TypeName="RmaModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="Purschace" ColumnName="Purschace" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Expectations" ColumnName="Expectations" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Pending" ColumnName="Pending" />
+                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="AppType_Id" ColumnName="AppType_Id" />
+                <ScalarProperty Name="Realization_Id" ColumnName="Realization_Id" />
+                <ScalarProperty Name="Statue_Id" ColumnName="Statue_Id" />
+                <ScalarProperty Name="Result_Id" ColumnName="Result_Id" />
+                <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="APPTYPE">
-            <EntityTypeMapping TypeName="RMAModel.APPTYPE">
-              <MappingFragment StoreEntitySet="APPTYPE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <EntitySetMapping Name="AppType">
+            <EntityTypeMapping TypeName="RmaModel.AppType">
+              <MappingFragment StoreEntitySet="AppType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BANKACCOUNT">
-            <EntityTypeMapping TypeName="RMAModel.BANKACCOUNT">
-              <MappingFragment StoreEntitySet="BANKACCOUNT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BANKNAME" ColumnName="BANKNAME" />
-                <ScalarProperty Name="ACCOUNTNUMBER" ColumnName="ACCOUNTNUMBER" />
+          <EntitySetMapping Name="BankAccount">
+            <EntityTypeMapping TypeName="RmaModel.BankAccount">
+              <MappingFragment StoreEntitySet="BankAccount">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CATEGORY">
-            <EntityTypeMapping TypeName="RMAModel.CATEGORY">
-              <MappingFragment StoreEntitySet="CATEGORY">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="RmaModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CLIENT">
-            <EntityTypeMapping TypeName="RMAModel.CLIENT">
-              <MappingFragment StoreEntitySet="CLIENT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
-                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
-                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
-                <ScalarProperty Name="ADRESS_ID" ColumnName="ADRESS_ID" />
-                <ScalarProperty Name="BANKACCOUNT_ID" ColumnName="BANKACCOUNT_ID" />
+          <EntitySetMapping Name="Email">
+            <EntityTypeMapping TypeName="RmaModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Reciper" ColumnName="Reciper" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="Application_Id" ColumnName="Application_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EMAIL">
-            <EntityTypeMapping TypeName="RMAModel.EMAIL">
-              <MappingFragment StoreEntitySet="EMAIL">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="SENDER" ColumnName="SENDER" />
-                <ScalarProperty Name="RECIPER" ColumnName="RECIPER" />
-                <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
-                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
-                <ScalarProperty Name="POSTDATE" ColumnName="POSTDATE" />
-                <ScalarProperty Name="APPLICATION_ID" ColumnName="APPLICATION_ID" />
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="RmaModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EMPLOYEE">
-            <EntityTypeMapping TypeName="RMAModel.EMPLOYEE">
-              <MappingFragment StoreEntitySet="EMPLOYEE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
-                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
-                <ScalarProperty Name="ADRESS_ID" ColumnName="ADRESS_ID" />
+          <EntitySetMapping Name="Realization">
+            <EntityTypeMapping TypeName="RmaModel.Realization">
+              <MappingFragment StoreEntitySet="Realization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCT">
-            <EntityTypeMapping TypeName="RMAModel.PRODUCT">
-              <MappingFragment StoreEntitySet="PRODUCT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <EntitySetMapping Name="Result">
+            <EntityTypeMapping TypeName="RmaModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="REALIZATION">
-            <EntityTypeMapping TypeName="RMAModel.REALIZATION">
-              <MappingFragment StoreEntitySet="REALIZATION">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="RmaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RESULT">
-            <EntityTypeMapping TypeName="RMAModel.RESULT">
-              <MappingFragment StoreEntitySet="RESULT">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <EntitySetMapping Name="Statue">
+            <EntityTypeMapping TypeName="RmaModel.Statue">
+              <MappingFragment StoreEntitySet="Statue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ROLE">
-            <EntityTypeMapping TypeName="RMAModel.ROLE">
-              <MappingFragment StoreEntitySet="ROLE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="STATUE">
-            <EntityTypeMapping TypeName="RMAModel.STATUE">
-              <MappingFragment StoreEntitySet="STATUE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="RmaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="Adress_Id" ColumnName="Adress_Id" />
+                <ScalarProperty Name="BankAccount_Id" ColumnName="BankAccount_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

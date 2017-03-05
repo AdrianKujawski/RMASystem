@@ -4,34 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24c24d51e66442e2aea13d25690b293b" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="RMAModel.ADRESS" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.APPLICATION" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.APPTYPE" Width="1.5" PointX="11.375" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.BANKACCOUNT" Width="1.5" PointX="4.625" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.CATEGORY" Width="1.5" PointX="14.125" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.CLIENT" Width="1.5" PointX="5.375" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.EMAIL" Width="1.5" PointX="13.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.EMPLOYEE" Width="1.5" PointX="5.375" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.PRODUCT" Width="1.5" PointX="11.375" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.REALIZATION" Width="1.5" PointX="7.125" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.RESULT" Width="1.5" PointX="11.375" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.ROLE" Width="1.5" PointX="2" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RMAModel.STATUE" Width="1.5" PointX="9.125" PointY="10.875" IsExpanded="true" />
-        <AssociationConnector Association="RMAModel.FK__CLIENT__ADRESS_I__1B0907CE" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__EMPLOYEE__ADRESS__15502E78" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__APPTY__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__CLIEN__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__EMPLO__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__PRODU__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__REALI__2D27B809" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__RESUL__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__APPLICATI__STATU__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__EMAIL__APPLICATI__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__CLIENT__BANKACCO__1BFD2C07" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__PRODUCT__CATEGOR__20C1E124" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__CLIENT__ROLE_ID__1A14E395" ManuallyRouted="false" />
-        <AssociationConnector Association="RMAModel.FK__EMPLOYEE__ROLE_I__145C0A3F" ManuallyRouted="false" />
+      <Diagram DiagramId="9d08b9c8e6f149c29e3b10e3e59708b3" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="RmaModel.Adress" Width="1.5" PointX="0.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Application" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.AppType" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.BankAccount" Width="1.5" PointX="0.875" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Category" Width="1.5" PointX="0.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Email" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Product" Width="1.5" PointX="3.125" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Realization" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Result" Width="1.5" PointX="7.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Role" Width="1.5" PointX="0.875" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.Statue" Width="1.5" PointX="5.125" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RmaModel.User" Width="1.5" PointX="3.125" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="RmaModel.FK__User__Adress_Id__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__AppTy__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Clien__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Emplo__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Produ__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Reali__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Resul__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Applicati__Statu__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Email__Applicati__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__User__BankAccoun__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__Product__Categor__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="RmaModel.FK__User__Role_Id__5EBF139D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

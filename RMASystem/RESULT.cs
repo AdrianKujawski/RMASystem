@@ -12,18 +12,18 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class RESULT
+    public partial class Result
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RESULT()
+        public Result()
         {
-            this.APPLICATION = new HashSet<APPLICATION>();
+            this.Application = new HashSet<Application>();
         }
     
-        public int ID { get; set; }
-        public string NAME { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<APPLICATION> APPLICATION { get; set; }
+        public virtual ICollection<Application> Application { get; set; }
     }
 }

@@ -128,77 +128,76 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="RMAEntity.Context.tt">
+    <Content Include="RmaEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RMAEntity.edmx</DependentUpon>
-      <LastGenOutput>RMAEntity.Context.cs</LastGenOutput>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+      <LastGenOutput>RmaEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="RMAEntity.tt">
+    <Content Include="RmaEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RMAEntity.edmx</DependentUpon>
-      <LastGenOutput>RMAEntity.cs</LastGenOutput>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+      <LastGenOutput>RmaEntity.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADRESS.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Adress.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="APPLICATION.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Application.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="APPTYPE.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="AppType.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BANKACCOUNT.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="BankAccount.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="CATEGORY.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Category.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="CLIENT.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EMAIL.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EMPLOYEE.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Email.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PRODUCT.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Product.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="REALIZATION.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Realization.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="RESULT.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Result.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="RMAEntity.Context.cs">
+    <Compile Include="RmaEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RMAEntity.Context.tt</DependentUpon>
+      <DependentUpon>RmaEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="RMAEntity.cs">
+    <Compile Include="RmaEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="RMAEntity.Designer.cs">
+    <Compile Include="RmaEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RMAEntity.edmx</DependentUpon>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ROLE.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Role.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="STATUE.cs">
-      <DependentUpon>RMAEntity.tt</DependentUpon>
+    <Compile Include="Statue.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -207,12 +206,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="RMAEntity.edmx">
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <EntityDeploy Include="RmaEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RMAEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>RmaEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="RMAEntity.edmx.diagram">
-      <DependentUpon>RMAEntity.edmx</DependentUpon>
+    <Content Include="RmaEntity.edmx.diagram">
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -223,8 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

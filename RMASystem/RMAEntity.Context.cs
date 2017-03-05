@@ -13,10 +13,10 @@ namespace RMASystem
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RMAEntities : DbContext
+    public partial class RmaEntities : DbContext
     {
-        public RMAEntities()
-            : base("name=RMAEntities")
+        public RmaEntities()
+            : base("name=RmaEntities")
         {
         }
     
@@ -25,18 +25,17 @@ namespace RMASystem
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ADRESS> ADRESS { get; set; }
-        public virtual DbSet<APPLICATION> APPLICATION { get; set; }
-        public virtual DbSet<APPTYPE> APPTYPE { get; set; }
-        public virtual DbSet<BANKACCOUNT> BANKACCOUNT { get; set; }
-        public virtual DbSet<CATEGORY> CATEGORY { get; set; }
-        public virtual DbSet<CLIENT> CLIENT { get; set; }
-        public virtual DbSet<EMAIL> EMAIL { get; set; }
-        public virtual DbSet<EMPLOYEE> EMPLOYEE { get; set; }
-        public virtual DbSet<PRODUCT> PRODUCT { get; set; }
-        public virtual DbSet<REALIZATION> REALIZATION { get; set; }
-        public virtual DbSet<RESULT> RESULT { get; set; }
-        public virtual DbSet<ROLE> ROLE { get; set; }
-        public virtual DbSet<STATUE> STATUE { get; set; }
+        public virtual DbSet<Adress> Adress { get; set; }
+        public virtual DbSet<Application> Application { get; set; }
+        public virtual DbSet<AppType> AppType { get; set; }
+        public virtual DbSet<BankAccount> BankAccount { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Email> Email { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Realization> Realization { get; set; }
+        public virtual DbSet<Result> Result { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Statue> Statue { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

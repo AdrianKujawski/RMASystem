@@ -12,23 +12,20 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class ADRESS
+    public partial class Adress
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ADRESS()
+        public Adress()
         {
-            this.CLIENT = new HashSet<CLIENT>();
-            this.EMPLOYEE = new HashSet<EMPLOYEE>();
+            this.User = new HashSet<User>();
         }
     
-        public int ID { get; set; }
-        public string CITY { get; set; }
-        public string STREET { get; set; }
-        public string ZIPCODE { get; set; }
+        public int Id { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string ZipCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLIENT> CLIENT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EMPLOYEE> EMPLOYEE { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

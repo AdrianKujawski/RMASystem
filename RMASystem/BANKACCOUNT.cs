@@ -12,19 +12,19 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class BANKACCOUNT
+    public partial class BankAccount
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BANKACCOUNT()
+        public BankAccount()
         {
-            this.CLIENT = new HashSet<CLIENT>();
+            this.User = new HashSet<User>();
         }
     
-        public int ID { get; set; }
-        public string BANKNAME { get; set; }
-        public string ACCOUNTNUMBER { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string AccountNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLIENT> CLIENT { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

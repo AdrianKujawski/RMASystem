@@ -12,20 +12,20 @@ namespace RMASystem
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PRODUCT()
+        public Product()
         {
-            this.APPLICATION = new HashSet<APPLICATION>();
+            this.Application = new HashSet<Application>();
         }
     
-        public int ID { get; set; }
-        public string NAME { get; set; }
-        public Nullable<int> CATEGORY_ID { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Category_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<APPLICATION> APPLICATION { get; set; }
-        public virtual CATEGORY CATEGORY { get; set; }
+        public virtual ICollection<Application> Application { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
