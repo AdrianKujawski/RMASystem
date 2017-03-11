@@ -9,7 +9,7 @@ namespace RMASystem.Controllers.Tests {
 	public class Login_User {
 
 		bool execute(string email, string password) {
-			return Provider.Instance.LoginUser(email, password);
+			return Provider.Instance.FindUser(email, password);
 		}
 
 		[Fact]

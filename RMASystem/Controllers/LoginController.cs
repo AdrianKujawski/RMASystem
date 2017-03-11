@@ -16,11 +16,12 @@ namespace RMASystem.Controllers {
 		}
 
 		[HttpPost]
-		public ActionResult Login(Models.User user) {
-			var isCorrectData = Provider.Instance.LoginUser(user?.Email, user?.Password);
-			if (!ModelState.IsValid || !isCorrectData) return View("Index");
+		public ActionResult Login(Models.ApplicationUser user) {
+			var isCorrectData = Provider.Instance.FindUser(user?.Email, user?.Password);
+			if (ModelState.IsValid && isCorrectData) return View();
 
-			return View();
+			ModelState.AddModelError("", "Niepoprawny e-mail lub hasło");
+			return View("Index");
 		}
 	}
 

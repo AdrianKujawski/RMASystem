@@ -19,7 +19,7 @@ namespace RMASystem.DbHelper {
 
 		Provider() {}
 
-		public bool LoginUser(string email, string password) {
+		public bool FindUser(string email, string password) {
 			var foundUser = Instance.User.FirstOrDefault(u => u.Email == email && u.Password == password);
 			return foundUser != null;
 		}
