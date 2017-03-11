@@ -1,8 +1,7 @@
-﻿@using RMASystem.Models
-@model User
+﻿@model RMASystem.Models.User
 
 @{
-	Layout = null;
+	
 }
 
 <!DOCTYPE html>
@@ -14,7 +13,7 @@
 </head>
 <body>
 <div>
-	@Html.BeginForm("Login","Login"){
+	@using (Html.BeginForm("Login", "Login")) {
 		@Html.LabelFor(l => l.Email, "E-mail")
 		@Html.EditorFor(e => e.Email)<br/>
 		@Html.ValidationMessageFor(model => model.Email)<br/>
@@ -22,7 +21,7 @@
 		@Html.LabelFor(l => l.Password, "Hasło")
 		@Html.PasswordFor(e => e.Password)<br/>
 		@Html.ValidationMessageFor(model => model.Password)<br/>
-	<input type="submit" value="Zaloguj" >
+		<input type="submit" value="Zaloguj">
 	}
 </div>
 </body>

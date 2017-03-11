@@ -1,0 +1,90 @@
+﻿@model RMASystem.User
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Szczegóły</title>
+</head>
+<body>
+    <div>
+        <h4>Użytownik</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Imie")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Nazwisko")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Telefon")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Hasło")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Miasto")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Adress.City)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Bank")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BankAccount.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Rola")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Role.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+		@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new {@class = "btn btn-primary btn-sm"})
+        @Html.ActionLink("Wróć do listy", "Index", null, new {@class = "btn btn-primary btn-sm"})
+    </p>
+</body>
+</html>

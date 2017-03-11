@@ -1,0 +1,42 @@
+﻿@model RMASystem.BankAccount
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Szczegóły</title>
+</head>
+<body>
+    <div>
+        <h4>BankAccount</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Nazwa")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Numer konta")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AccountNumber)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new {@class = "btn btn-primary btn-sm"})
+        @Html.ActionLink("Wróć do listy", "Index", null, new {@class = "btn btn-primary btn-sm"})
+    </p>
+</body>
+</html>

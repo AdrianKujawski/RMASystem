@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RMASystem
 {
     using System;
@@ -21,7 +23,8 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
+		[Required]
+		public string Name { get; set; }
         public Nullable<int> Category_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RMASystem
 {
     using System;
@@ -19,15 +21,22 @@ namespace RMASystem
         {
             this.Email = new HashSet<Email>();
         }
-    
+		
         public int Id { get; set; }
+		[Required]
         public string Name { get; set; }
-        public string InvoiceNo { get; set; }
-        public System.DateTime Purschace { get; set; }
-        public string Content { get; set; }
-        public string Description { get; set; }
-        public string Expectations { get; set; }
-        public Nullable<decimal> Cost { get; set; }
+		[Required]
+		public string InvoiceNo { get; set; }
+		[Required]
+		public System.DateTime Purschace { get; set; }
+		[Required]
+		public string Content { get; set; }
+		[Required]
+		public string Description { get; set; }
+		[Required]
+		public string Expectations { get; set; }
+		[Required]
+		public Nullable<decimal> Cost { get; set; }
         public Nullable<System.DateTime> Start { get; set; }
         public Nullable<System.DateTime> Pending { get; set; }
         public Nullable<System.DateTime> InProgress { get; set; }
@@ -49,5 +58,6 @@ namespace RMASystem
         public virtual Statue Statue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Email> Email { get; set; }
+
     }
 }

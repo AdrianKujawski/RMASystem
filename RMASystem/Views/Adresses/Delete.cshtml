@@ -1,0 +1,56 @@
+﻿@model RMASystem.Adress
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Usuń</title>
+</head>
+<body>
+    <h3>Czy na pewno chcesz to usunąć?</h3>
+    <div>
+        <h4>Adress</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Miasto")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Ulica")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Street)
+            </dd>
+    
+            <dt>
+                @Html.DisplayName("Kod pocztowy")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ZipCode)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Usuń" class="btn btn-default" /> |
+                @Html.ActionLink("Wróć do listy", "Index", null, new {@class = "btn btn-primary btn-sm"})
+            </div>
+        }
+    </div>
+</body>
+</html>

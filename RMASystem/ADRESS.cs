@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RMASystem
 {
     using System;
@@ -21,9 +23,13 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string ZipCode { get; set; }
+		[Required]
+		public string City { get; set; }
+		[Required]
+		public string Street { get; set; }
+		[Required]
+		[StringLength(10)]
+		public string ZipCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }

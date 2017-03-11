@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RMASystem
 {
     using System;
@@ -22,16 +24,25 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+		[Required]
+		[StringLength(30)]
+		public string FirstName { get; set; }
+		[Required]
+		[StringLength(40)]
+		public string LastName { get; set; }
+		[Required]
+		[StringLength(20)]
         public string Phone { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+		[Required]
+		public string Email { get; set; }
+		[Required]
+		public string Password { get; set; }
         public Nullable<int> Role_Id { get; set; }
         public Nullable<int> Adress_Id { get; set; }
         public Nullable<int> BankAccount_Id { get; set; }
-    
-        public virtual Adress Adress { get; set; }
+	    public string FullName => $"{FirstName} {LastName}";
+
+		public virtual Adress Adress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

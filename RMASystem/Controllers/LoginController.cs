@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using RMASystem.Models;
+﻿// -----------------------------------------------------------------------
+// <copyright file="LoginController.cs">
+//     Copyright (c) 2017, Adrian Kujawski.
+// </copyright>
+// -----------------------------------------------------------------------
 
-namespace RMASystem.Controllers
-{
-    public class LoginController : Controller
-    {
-        // GET: Login
-        public ActionResult Index()
-        {
-            return View();
-        }
+using System.Linq;
+using System.Web.Mvc;
+using RMASystem.DbHelper;
+namespace RMASystem.Controllers {
+
+	public class LoginController : Controller {
+		// GET: Login
+		public ActionResult Index() {
+			return View();
+		}
 
 		[HttpPost]
-	    public ActionResult Login(User user) {
-		    if (!ModelState.IsValid) return View("Index");
+		public ActionResult Login(Models.User user) {
+			var isCorrectData = Provider.Instance.LoginUser(user?.Email, user?.Password);
+			if (!ModelState.IsValid || !isCorrectData) return View("Index");
 
-		    if (user.Email == "A" && user.Password == "B") {
-			    return View(user);
-		    }
+			return View();
+		}
+	}
 
-		    return View("Index");
-	    }
-    }
 }

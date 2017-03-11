@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace RMASystem
 {
     using System;
@@ -15,10 +17,14 @@ namespace RMASystem
     public partial class Email
     {
         public int Id { get; set; }
-        public string Sender { get; set; }
-        public string Reciper { get; set; }
-        public string Subject { get; set; }
-        public string Content { get; set; }
+		[Required]
+		public string Sender { get; set; }
+		[Required]
+		public string Reciper { get; set; }
+		[Required]
+		public string Subject { get; set; }
+		[Required]
+		public string Content { get; set; }
         public Nullable<System.DateTime> PostDate { get; set; }
         public Nullable<int> Application_Id { get; set; }
     
