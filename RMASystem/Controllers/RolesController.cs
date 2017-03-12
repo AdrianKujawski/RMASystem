@@ -10,7 +10,8 @@ using RMASystem;
 
 namespace RMASystem.Controllers
 {
-    public class RolesController : Controller
+	[Authorize(Roles = "Administrator")]
+	public class RolesController : Controller
     {
         private RmaEntities db = new RmaEntities();
 

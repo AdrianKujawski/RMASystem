@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using RMASystem;
 
 namespace RMASystem.Controllers
 {
+	[Authorize(Roles = "Administrator")]
     public class AdressesController : Controller
     {
         private RmaEntities db = new RmaEntities();

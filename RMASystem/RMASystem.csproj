@@ -120,6 +120,7 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -197,6 +198,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAuthentication.cs" />
     <Compile Include="Adress.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
@@ -218,20 +220,21 @@
     <Compile Include="Controllers\AppTypesController.cs" />
     <Compile Include="Controllers\BankAccountsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StatuesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="DbHelper\Provider.cs" />
     <Compile Include="Email.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApplicationRoleProvider.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\UserAuthenctication.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
@@ -274,8 +277,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\UserPanel.cshtml" />
     <EntityDeploy Include="RmaEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RmaEntity.Designer.cs</LastGenOutput>
@@ -351,6 +354,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DbHelper\" />
+    <Folder Include="Views\UserAuthentication\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

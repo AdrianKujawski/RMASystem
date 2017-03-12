@@ -10,7 +10,8 @@ using RMASystem;
 
 namespace RMASystem.Controllers
 {
-    public class BankAccountsController : Controller
+	[Authorize(Roles = "Administrator")]
+	public class BankAccountsController : Controller
     {
         private RmaEntities db = new RmaEntities();
 
