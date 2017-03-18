@@ -23,9 +23,14 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
+
 		[Required]
+		[Display(Name = "Nazwa")]
 		public string Name { get; set; }
-        public Nullable<int> Category_Id { get; set; }
+
+		[Required]
+		[Display(Name = "Kategoria")]
+		public Nullable<int> Category_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }

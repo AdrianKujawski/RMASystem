@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using RMASystem.Validator;
 
 namespace RMASystem
 {
@@ -23,27 +24,77 @@ namespace RMASystem
         }
 		
         public int Id { get; set; }
+
 		[Required]
-        public string Name { get; set; }
+		[Display(Name = "Kod")]
+		public string Name { get; set; }
+
 		[Required]
+		[Display(Name = "Nr Faktury")]	
 		public string InvoiceNo { get; set; }
+
 		[Required]
+		[DataType(DataType.Date)]
+		[Display(Name = "Data zakupu")]
+		[NotFutureDate]
 		public System.DateTime Purschace { get; set; }
+
 		[Required]
+		[Display(Name = "Zawartość")]
+		[DataType(DataType.MultilineText)]
+		[StringLength(255, MinimumLength = 10)]
 		public string Content { get; set; }
+
 		[Required]
+		[Display(Name = "Opis")]
+		[DataType(DataType.MultilineText)]
+		[StringLength(255, MinimumLength = 20)]
 		public string Description { get; set; }
+
 		[Required]
+		[Display(Name = "Oczekiwania")]
+		[DataType(DataType.MultilineText)]
+		[StringLength(255, MinimumLength = 10)]
 		public string Expectations { get; set; }
-		[Required]
+
+		[Range(0, 9999999.99)]
 		public Nullable<decimal> Cost { get; set; }
-        public Nullable<System.DateTime> Start { get; set; }
-        public Nullable<System.DateTime> Pending { get; set; }
-        public Nullable<System.DateTime> InProgress { get; set; }
-        public Nullable<System.DateTime> End { get; set; }
+
+		[DataType(DataType.Date, ErrorMessage = "Data musi miec format ")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		[Display(Name = "Data otwarcia")]
+		[NotFutureDate]
+		public Nullable<System.DateTime> Start { get; set; }
+
+		[DataType(DataType.Date, ErrorMessage = "Data musi miec format dd-mm-rrrr")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		[Display(Name = "Data oczekiwania")]
+		[NotFutureDate]
+		public Nullable<System.DateTime> Pending { get; set; }
+
+		[DataType(DataType.Date, ErrorMessage = "Data musi miec format dd-mm-rrrr")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		[Display(Name = "Data realizacji")]
+		[NotFutureDate]
+		public Nullable<System.DateTime> InProgress { get; set; }
+
+		[DataType(DataType.Date, ErrorMessage = "Data musi miec format dd-mm-rrrr")]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+		[Display(Name = "Data zakończenia")]
+		[NotFutureDate]
+		public Nullable<System.DateTime> End { get; set; }
+
+		[Required]
+		[Display(Name = "Produkt")]
         public Nullable<int> Product_Id { get; set; }
+
+		[Required]
+		[Display(Name = "Typ zlecenia")]
         public Nullable<int> AppType_Id { get; set; }
-        public Nullable<int> Realization_Id { get; set; }
+
+		[Required]
+		[Display(Name = "Sposób realizacji")]
+		public Nullable<int> Realization_Id { get; set; }
         public Nullable<int> Statue_Id { get; set; }
         public Nullable<int> Result_Id { get; set; }
         public Nullable<int> Client_Id { get; set; }

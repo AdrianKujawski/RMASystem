@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc.Html;
 
 namespace RMASystem
 {
@@ -23,12 +24,18 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
+
 		[Required]
+		[Display(Name = "Miasto")]
 		public string City { get; set; }
+
 		[Required]
+		[Display(Name = "Ulica")]
 		public string Street { get; set; }
+
 		[Required]
-		[StringLength(10)]
+		[Display(Name = "Kod pocztowy")]
+		[RegularExpression(@"^\(?([0-9]{2})\)?[-. ]?([0-9]{3})$", ErrorMessage = "Kod pocztowy musi być w formacie 00-000")]
 		public string ZipCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

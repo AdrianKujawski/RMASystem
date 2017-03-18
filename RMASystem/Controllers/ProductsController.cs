@@ -38,10 +38,10 @@ namespace RMASystem.Controllers
         }
 
         // GET: Products/Create
-        public ActionResult Create()
-        {
-            ViewBag.Category_Id = new SelectList(db.Category, "Id", "Name");
-            return View();
+        public ActionResult Create() {
+	        ViewBag.Category_Id = new SelectList(db.Category, "Id", "Name");
+
+			return View();
         }
 
         // POST: Products/Create

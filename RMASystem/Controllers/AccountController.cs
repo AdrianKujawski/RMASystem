@@ -26,7 +26,14 @@ namespace RMASystem.Controllers {
 		// GET: Login
 		[AllowAnonymous]
 		public ActionResult Index() {
-			return HttpContext.User.Identity.IsAuthenticated ? View("UserPanel") : View();
+			if (!HttpContext.User.Identity.IsAuthenticated) return View();
+
+			using (var context = new RmaEntities()) {
+				var userEmail = HttpContext.User.Identity.Name;
+				var currentUser = context.User.FirstOrDefault(u => u.Email == userEmail);
+				ViewBag.User = currentUser;
+				return View("UserPanel");
+			}
 		}
 
 		[HttpPost]
@@ -41,11 +48,11 @@ namespace RMASystem.Controllers {
 ;			}
 
 			ModelState.AddModelError("", "Niepoprawny e-mail lub hasło");
-			return View("Index");
+			return RedirectToAction("Index");
 		}
 
 		public ActionResult UserPanel() {
-			return HttpContext.User.Identity.IsAuthenticated ? View() : View("Index");
+			return RedirectToAction("Index");
 		}
 
 		public ActionResult Logout() {

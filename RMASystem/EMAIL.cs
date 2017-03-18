@@ -17,14 +17,22 @@ namespace RMASystem
     public partial class Email
     {
         public int Id { get; set; }
+
 		[Required]
+		[Display(Name = "Nadawca")]
 		public string Sender { get; set; }
+
 		[Required]
+		[Display(Name = "Odbiorca")]
 		public string Reciper { get; set; }
+
 		[Required]
+		[Display(Name = "Temat")]
 		public string Subject { get; set; }
-		[Required]
+
+		[Display(Name = "Treœæ")]
 		public string Content { get; set; }
+
         public Nullable<System.DateTime> PostDate { get; set; }
         public Nullable<int> Application_Id { get; set; }
     

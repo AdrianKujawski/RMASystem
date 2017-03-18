@@ -63,25 +63,25 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Role_Id, "Role_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Role_Id, "Rola", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Role_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Role_Id", null, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Role_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Adress_Id, "Adress_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Adress_Id, "Adres", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Adress_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Adress_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Adress_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.BankAccount_Id, "BankAccount_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.BankAccount_Id, "Konto bankowe", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("BankAccount_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("BankAccount_Id", null, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.BankAccount_Id, "", new { @class = "text-danger" })
                 </div>
             </div>

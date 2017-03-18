@@ -270,6 +270,7 @@
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\RealizationsController.cs" />
+    <Compile Include="Validator\NotFutureDate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -354,7 +355,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DbHelper\" />
     <Folder Include="Views\UserAuthentication\" />
   </ItemGroup>
   <ItemGroup>

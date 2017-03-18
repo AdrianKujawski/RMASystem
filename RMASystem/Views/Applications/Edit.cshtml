@@ -113,7 +113,7 @@
             <div class="form-group">
                 @Html.Label("Produkt", "Product_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Product_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Product_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Product_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="form-group">
                 @Html.Label("Typ zlecenia", "AppType_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("AppType_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("AppType_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.AppType_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -129,7 +129,7 @@
             <div class="form-group">
                 @Html.Label("Sposób realizacji", "Realization_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Realization_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Realization_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Realization_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -137,7 +137,7 @@
             <div class="form-group">
                 @Html.Label("Status", "Statue_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Statue_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Statue_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Statue_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -145,7 +145,7 @@
             <div class="form-group">
                 @Html.Label("Rezultat", "Result_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Result_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Result_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Result_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -153,7 +153,7 @@
             <div class="form-group">
                 @Html.Label("Klient", "Client_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Client_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Client_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Client_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -161,7 +161,7 @@
             <div class="form-group">
                 @Html.Label("Serwistant", "Employee_Id", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Employee_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Employee_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Employee_Id, "", new { @class = "text-danger" })
                 </div>
             </div>

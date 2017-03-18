@@ -1,7 +1,7 @@
 ﻿@model RMASystem.Models.ApplicationUser
 
 @{
-    
+
 }
 
 <!DOCTYPE html>
@@ -15,15 +15,11 @@
 <div>
 	@{
 		var email = HttpContext.Current.User.Identity.Name;
-		var asd = HttpContext.Current.User.Identity.AuthenticationType;
-		var asd2 = HttpContext.Current.User.Identity.IsAuthenticated;
-		var asd3 = HttpContext.Current.User;
-		var asd4 = HttpContext.Current.User.IsInRole("Administrator");
-		if (!string.IsNullOrEmpty(email)) {
-			<h4>Admin Power!</h4>
+		if (HttpContext.Current.User.IsInRole("Administrator")) {
+			<h4>Admin Panel</h4>
 		}
 	}
-	<h2>Witaj @email!</h2>
+	<h2>Witaj @ViewBag.User.FirstName!</h2>
 </div>
 </body>
 </html>

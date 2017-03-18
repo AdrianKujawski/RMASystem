@@ -1,4 +1,4 @@
-﻿@model RMASystem.User
+﻿	@model RMASystem.User
 
 @{
     
@@ -47,15 +47,15 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", autocomplete= "off"} })
+					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
     
             <div class="form-group">
                 @Html.Label("Hasło", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Role_Id, "Rola", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Role_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Role_Id", (SelectList)ViewBag.Role_Id, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Role_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -71,7 +71,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Adress_Id, "Adres", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Adress_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Adress_Id", (SelectList)ViewBag.AppType_Id, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Adress_Id, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -79,7 +79,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.BankAccount_Id, "Konto bankowe", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("BankAccount_Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("BankAccount_Id", (SelectList)ViewBag.BankAccount_Id, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.BankAccount_Id, "", new { @class = "text-danger" })
                 </div>
             </div>

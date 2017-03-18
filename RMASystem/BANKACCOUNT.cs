@@ -23,10 +23,15 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
+
 		[Required]
+		[Display(Name = "Nazwa banku")]
         public string Name { get; set; }
+
 		[Required]
-		[StringLength(26)]
+		[Display(Name = "Numer konta")]
+		[StringLength(26, MinimumLength = 26, ErrorMessage = "Konto bankowe musi miec 26 cyfr.")]
+		[RegularExpression("^[0-9]*$", ErrorMessage = "Tylko cyfry są dozwolone.")]
 		public string AccountNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

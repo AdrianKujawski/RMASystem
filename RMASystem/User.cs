@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace RMASystem
@@ -24,22 +25,46 @@ namespace RMASystem
         }
     
         public int Id { get; set; }
+
 		[Required]
-		[StringLength(30)]
+		[Display(Name = "Imie")]
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Dozwolone są tylko litery")]
+		[StringLength(30, MinimumLength = 2)]
 		public string FirstName { get; set; }
+
 		[Required]
-		[StringLength(40)]
+		[Display(Name = "Nazwisko")]
+		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Dozwolone są tylko litery")]
+		[StringLength(40, MinimumLength = 2)]
 		public string LastName { get; set; }
+
 		[Required]
-		[StringLength(20)]
+		[Display(Name = "Telefon")]
+		[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefon musi być w formacie 123-456-789.")]
+		[StringLength(20, MinimumLength = 9)]
         public string Phone { get; set; }
+
 		[Required]
+		[Display(Name = "E-mail")]
+		[EmailAddress(ErrorMessage = "Niepoprawny adres e-mail.")]
 		public string Email { get; set; }
+
 		[Required]
+		[Display(Name = "Hasło")]
+		[DataType(DataType.Password)]
+		[StringLength(30, MinimumLength = 8)]
 		public string Password { get; set; }
-        public Nullable<int> Role_Id { get; set; }
-        public Nullable<int> Adress_Id { get; set; }
-        public Nullable<int> BankAccount_Id { get; set; }
+
+		[Required]
+		[Display(Name = "Rola")]
+		public Nullable<int> Role_Id { get; set; }
+
+		[Display(Name = "Adres")]
+		public Nullable<int> Adress_Id { get; set; }
+
+		[Display(Name = "Konto bankowe")]
+		public Nullable<int> BankAccount_Id { get; set; }
+
 	    public string FullName => $"{FirstName} {LastName}";
 
 		public virtual Adress Adress { get; set; }

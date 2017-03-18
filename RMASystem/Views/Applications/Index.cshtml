@@ -18,7 +18,7 @@
 	<table class="table">
 		<tr>
 			<th>
-				@Html.DisplayName("Kod");
+				@Html.DisplayName("Kod")
 			</th>
 			<th>
 				@Html.DisplayName("Nr faktury")
@@ -71,6 +71,9 @@
 			<th>
 				@Html.DisplayName("Status")
 			</th>
+			<th/>
+			<th/>
+			<th/>
 			<th></th>
 		</tr>
 
@@ -132,7 +135,11 @@
 				</td>
 				<td>
 					@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+				</td>
+				<td>
 					@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+				</td>
+				<td>
 					@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
 				</td>
 			</tr>
