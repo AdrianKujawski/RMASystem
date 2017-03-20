@@ -235,6 +235,7 @@
     <Compile Include="Models\ApplicationRoleProvider.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\UserAuthenctication.cs" />
+    <Compile Include="Models\ViewModel\RegisterUserViewModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
@@ -346,6 +347,7 @@
     <Content Include="Views\Statues\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
