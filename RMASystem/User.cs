@@ -65,7 +65,9 @@ namespace RMASystem
 		[Display(Name = "Konto bankowe")]
 		public Nullable<int> BankAccount_Id { get; set; }
 
-	    public string FullName => $"{FirstName} {LastName}";
+		public bool EmailConfirmed { get; set; }
+
+		public string FullName => $"{FirstName} {LastName}";
 
 	    public string Identificator => $"{FullName} ({Email})"; 
 		public virtual Adress Adress { get; set; }

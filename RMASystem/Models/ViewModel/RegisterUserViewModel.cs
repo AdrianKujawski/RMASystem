@@ -7,6 +7,8 @@ using System.Web;
 namespace RMASystem.Models.ViewModel {
 	public class RegisterUserViewModel {
 
+		public int Id { get; set; }
+
 		[Required]
 		[Display(Name = "Imie")]
 		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Dozwolone są tylko litery")]

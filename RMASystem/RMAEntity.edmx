@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adress">
           <Key>
             <PropertyRef Name="Id" />
@@ -121,6 +121,7 @@
           <Property Name="Role_Id" Type="int" />
           <Property Name="Adress_Id" Type="int" />
           <Property Name="BankAccount_Id" Type="int" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK__Applicati__AppTy__7C4F7684">
           <End Role="AppType" Type="Self.AppType" Multiplicity="0..1" />
@@ -328,8 +329,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -473,6 +473,7 @@
           <NavigationProperty Name="Application1" Relationship="Self.FK__Applicati__Emplo__01142BA1" FromRole="User" ToRole="Application" />
           <NavigationProperty Name="BankAccount" Relationship="Self.FK__User__BankAccoun__60A75C0F" FromRole="User" ToRole="BankAccount" />
           <NavigationProperty Name="Role" Relationship="Self.FK__User__Role_Id__5EBF139D" FromRole="User" ToRole="Role" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__User__Adress_Id__5FB337D6">
           <End Role="Adress" Type="Self.Adress" Multiplicity="0..1" />
@@ -803,6 +804,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="RmaModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

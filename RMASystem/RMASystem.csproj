@@ -232,9 +232,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApplicationRoleProvider.cs" />
+    <Compile Include="Helpers\ApplicationRoleProvider.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\UserAuthenctication.cs" />
+    <Compile Include="Helpers\UserAuthenctication.cs" />
     <Compile Include="Models\ViewModel\RegisterUserViewModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>

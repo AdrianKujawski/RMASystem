@@ -20,6 +20,11 @@
 		}
 	}
 	<h2>Witaj @ViewBag.User.FirstName!</h2>
+	@{
+		if (!ViewBag.User.EmailConfirmed) {
+			<h3>Nie potwierdziłeś adresu e-mail.</h3>
+		}
+	}
 </div>
 </body>
 </html>

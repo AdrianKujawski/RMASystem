@@ -7,9 +7,13 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using RMASystem.Helpers;
 using RMASystem.Models;
 using RMASystem.Models.ViewModel;
 
@@ -61,15 +65,32 @@ namespace RMASystem.Controllers {
 
 		[HttpPost]
 		[AllowAnonymous]
-		public ActionResult Register(RegisterUserViewModel model) {
+		public async Task<ActionResult> Register(RegisterUserViewModel model) {
 			if (!ModelState.IsValid) return View();
 
 			if (IsEmailNotUnique(model.Email)) ModelState.AddModelError("", "Ten e-mail jest już w bazie.");
 			var addressId = AddNewAddress(model);
 			var bankId = AddNewBank(model);
 			AddNewUser(model, addressId, bankId);
+			await SendVerificationEmail(model);
 			SignInUser(model.Email);
 			return RedirectToAction("UserPanel");
+		}
+
+		async Task SendVerificationEmail(RegisterUserViewModel userEmail) {
+			var message = new MailMessage();
+			PrepareMessage(message, userEmail);
+			var emailHelper = new EmailHelper(true);
+			await emailHelper.Send(message);
+		}
+
+
+		void PrepareMessage(MailMessage message, RegisterUserViewModel model) {
+			message.To.Add(new MailAddress(model.Email));  
+			message.From = new MailAddress(Settings.EmailAddress);  
+			message.Subject = "Rejestracja w systemie RMA";
+			message.Body = $"Witaj {model.FirstName}!{Environment.NewLine}Kliknij link poniżej aby potwierdzić adres e-mail." +
+							$"{Environment.NewLine}{Url.Action("ConfirmEmail", "Account", new { Token = model.Id, Email = model.Email }, Request.Url.Scheme)}";
 		}
 
 		void AddNewUser(RegisterUserViewModel model, int addressId, int bankId) {
@@ -86,6 +107,7 @@ namespace RMASystem.Controllers {
 				};
 				context.User.Add(newUser);
 				context.SaveChanges();
+				model.Id = newUser.Id;
 			}
 		}
 
@@ -146,6 +168,18 @@ namespace RMASystem.Controllers {
 
 			var encTicket = FormsAuthentication.Encrypt(authTicket);
 			Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+		}
+
+		public ActionResult ConfirmEmail(int token, string email) {
+			using (var context = new RmaEntities()) {
+				var user = context.User.FirstOrDefault(u => u.Id == token && u.Email == email);
+				if (user == null) return null;
+
+				user.EmailConfirmed = true;
+				context.Entry(user).Property(p => p.EmailConfirmed).IsModified = true;
+				context.SaveChanges();
+				return RedirectToAction("Index");
+			}
 		}
 	}
 
