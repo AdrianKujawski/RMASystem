@@ -24,31 +24,10 @@
 				@Html.DisplayName("Nr faktury")
 			</th>
 			<th>
-				@Html.DisplayName("Data zakupu")
-			</th>
-			<th>
-				@Html.DisplayName("Zawartość")
-			</th>
-			<th>
-				@Html.DisplayName("Opis")
-			</th>
-			<th>
-				@Html.DisplayName("Oczekiwania")
-			</th>
-			<th>
-				@Html.DisplayName("Koszt")
+				@Html.DisplayName("Produkt")
 			</th>
 			<th>
 				@Html.DisplayName("Data otwarcia")
-			</th>
-			<th>
-				@Html.DisplayName("Data potwierdzenia")
-			</th>
-			<th>
-				@Html.DisplayName("Data rozpoczęcia")
-			</th>
-			<th>
-				@Html.DisplayName("Data zakończenia")
 			</th>
 			<th>
 				@Html.DisplayName("Typ zlecenia")
@@ -60,20 +39,8 @@
 				@Html.DisplayName("Serwisant")
 			</th>
 			<th>
-				@Html.DisplayName("Produkt")
-			</th>
-			<th>
-				@Html.DisplayName("Sposób realizacji")
-			</th>
-			<th>
-				@Html.DisplayName("Rezultat")
-			</th>
-			<th>
 				@Html.DisplayName("Status")
 			</th>
-			<th/>
-			<th/>
-			<th/>
 			<th></th>
 		</tr>
 
@@ -86,31 +53,10 @@
 					@Html.DisplayFor(modelItem => item.InvoiceNo)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Purschace)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Content)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Expectations)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Cost)
+					@Html.DisplayFor(modelItem => item.Product.Name)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Start)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Pending)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.InProgress)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.End)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.AppType.Name)
@@ -122,24 +68,11 @@
 					@Html.DisplayFor(modelItem => item.User1.FullName)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Product.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Realization.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Result.Name)
-				</td>
-				<td>
 					@Html.DisplayFor(modelItem => item.Statue.Name)
 				</td>
 				<td>
 					@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
-				</td>
-				<td>
 					@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-				</td>
-				<td>
 					@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
 				</td>
 			</tr>

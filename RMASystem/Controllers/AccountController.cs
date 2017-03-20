@@ -48,7 +48,7 @@ namespace RMASystem.Controllers {
 ;			}
 
 			ModelState.AddModelError("", "Niepoprawny e-mail lub hasło");
-			return RedirectToAction("Index");
+			return  View("Index");
 		}
 
 		public ActionResult UserPanel() {

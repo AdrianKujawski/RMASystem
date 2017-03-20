@@ -67,6 +67,7 @@ namespace RMASystem
 
 	    public string FullName => $"{FirstName} {LastName}";
 
+	    public string Identificator => $"{FullName} ({Email})"; 
 		public virtual Adress Adress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }
@@ -74,5 +75,6 @@ namespace RMASystem
         public virtual ICollection<Application> Application1 { get; set; }
         public virtual BankAccount BankAccount { get; set; }
         public virtual Role Role { get; set; }
+
     }
 }

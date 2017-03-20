@@ -41,8 +41,8 @@ namespace RMASystem.Controllers
         public ActionResult Create()
         {
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name");
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator");
+            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator");
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name");
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name");
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name");
@@ -65,8 +65,8 @@ namespace RMASystem.Controllers
             }
 
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "FirstName", application.Client_Id);
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "FirstName", application.Employee_Id);
+            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator", application.Client_Id);
+            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator", application.Employee_Id);
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -87,8 +87,8 @@ namespace RMASystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "FirstName", application.Client_Id);
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "FirstName", application.Employee_Id);
+            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator", application.Client_Id);
+            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator", application.Employee_Id);
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -110,8 +110,8 @@ namespace RMASystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "FirstName", application.Client_Id);
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "FirstName", application.Employee_Id);
+            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator", application.Client_Id);
+            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator", application.Employee_Id);
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
