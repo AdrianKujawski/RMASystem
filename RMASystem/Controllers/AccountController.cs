@@ -47,15 +47,11 @@ namespace RMASystem.Controllers {
 
 			if (_userAuthenctication.CheckLogin(model.Email, model.Password)) {
 				SignInUser(model.Email);
-				return RedirectToAction("UserPanel");
+				return RedirectToAction("Index");
 			}
 
 			ModelState.AddModelError("", "Niepoprawny e-mail lub hasło");
 			return View("Index");
-		}
-
-		public ActionResult UserPanel() {
-			return RedirectToAction("Index");
 		}
 
 		public ActionResult Logout() {
@@ -74,7 +70,7 @@ namespace RMASystem.Controllers {
 			AddNewUser(model, addressId, bankId);
 			await SendVerificationEmail(model);
 			SignInUser(model.Email);
-			return RedirectToAction("UserPanel");
+			return RedirectToAction("Index", new { register = true });
 		}
 
 		async Task SendVerificationEmail(RegisterUserViewModel userEmail) {
@@ -86,11 +82,12 @@ namespace RMASystem.Controllers {
 
 
 		void PrepareMessage(MailMessage message, RegisterUserViewModel model) {
+			var token = HashHelper.Encrypt(model.Id.ToString(), model.Email);
 			message.To.Add(new MailAddress(model.Email));  
 			message.From = new MailAddress(Settings.EmailAddress);  
 			message.Subject = "Rejestracja w systemie RMA";
 			message.Body = $"Witaj {model.FirstName}!{Environment.NewLine}Kliknij link poniżej aby potwierdzić adres e-mail." +
-							$"{Environment.NewLine}{Url.Action("ConfirmEmail", "Account", new { Token = model.Id, Email = model.Email }, Request.Url.Scheme)}";
+							$"{Environment.NewLine}{Url.Action("ConfirmEmail", "Account", new { Token = token, model.Email }, Request.Url.Scheme)}";
 		}
 
 		void AddNewUser(RegisterUserViewModel model, int addressId, int bankId) {
@@ -170,9 +167,10 @@ namespace RMASystem.Controllers {
 			Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 		}
 
-		public ActionResult ConfirmEmail(int token, string email) {
+		public ActionResult ConfirmEmail(string token, string email) {
 			using (var context = new RmaEntities()) {
-				var user = context.User.FirstOrDefault(u => u.Id == token && u.Email == email);
+				var userId = int.Parse(HashHelper.Decrypt(token, email));
+				var user = context.User.FirstOrDefault(u => u.Id == userId && u.Email == email);
 				if (user == null) return null;
 
 				user.EmailConfirmed = true;

@@ -18,6 +18,12 @@ namespace RMASystem
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Index", id = UrlParameter.Optional }
             );
+
+	        routes.MapRoute(
+		        name: "Register",
+		        url: "{controller}/{action}/{register}",
+		        defaults: new { controller = "Account", action = "Index", register = UrlParameter.Optional }
+	        );
         }
     }
 }

@@ -25,7 +25,6 @@ namespace RMASystem
 		
         public int Id { get; set; }
 
-		[Required]
 		[Display(Name = "Kod")]
 		public string Name { get; set; }
 
@@ -51,7 +50,6 @@ namespace RMASystem
 		[StringLength(255, MinimumLength = 20)]
 		public string Description { get; set; }
 
-		[Required]
 		[Display(Name = "Oczekiwania")]
 		[DataType(DataType.MultilineText)]
 		[StringLength(255, MinimumLength = 10)]

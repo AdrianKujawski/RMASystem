@@ -229,11 +229,13 @@
     <Compile Include="Email.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enum\EStatue.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ApplicationRoleProvider.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Helpers\UserAuthenctication.cs" />

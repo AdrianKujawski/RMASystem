@@ -1,4 +1,5 @@
-﻿@model RMASystem.Models.ApplicationUser
+﻿@using System.Web.UI.WebControls
+@model RMASystem.Models.ApplicationUser
 
 @{
 
@@ -14,15 +15,17 @@
 <body>
 <div>
 	@{
-		var email = HttpContext.Current.User.Identity.Name;
 		if (HttpContext.Current.User.IsInRole("Administrator")) {
 			<h4>Admin Panel</h4>
 		}
 	}
 	<h2>Witaj @ViewBag.User.FirstName!</h2>
 	@{
-		if (!ViewBag.User.EmailConfirmed) {
-			<h3>Nie potwierdziłeś adresu e-mail.</h3>
+
+			if (!ViewBag.User.EmailConfirmed) {
+			<div class=".bg-info">
+				Wysłaliśmy Ci link aktywacyjny na adres @HttpContext.Current.User.Identity.Name
+			</div>
 		}
 	}
 </div>

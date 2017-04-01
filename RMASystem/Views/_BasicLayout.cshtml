@@ -51,12 +51,18 @@
 						</li>
 					</ul>
 				}
+				if (HttpContext.Current.User.IsInRole("Klient")) {
+					<ul class="nav navbar-nav">
+						<li>@Html.ActionLink("Dodaj zgłoszenie", "Create", "Applications")</li>
+						<li>@Html.ActionLink("Pokaż zgłoszenia", "UserApplication", "Applications")</li>
+					</ul>
+				}
 			}
 			<ul class="nav navbar-nav navbar-right">
 				@{
 					if (HttpContext.Current.User.Identity.IsAuthenticated) {
 						var userName = HttpContext.Current.User.Identity.Name;
-						<li> @Html.ActionLink(userName, "UserPanel", "Account", null, new { @class = "navbar-btn" })</li>
+						<li> @Html.ActionLink(userName, "Index", "Account", null, new { @class = "navbar-btn" })</li>
 						<li>@Html.ActionLink("Wyloguj", "Logout", "Account", null, new { @class = "navbar-btn" })</li>
 					} else {
 						<li>

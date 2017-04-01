@@ -10,7 +10,7 @@ using RMASystem;
 
 namespace RMASystem.Controllers
 {
-	[Authorize(Roles = "Administrator")]
+	[Authorize]
 	public class ApplicationsController : Controller
     {
         private RmaEntities db = new RmaEntities();
@@ -37,12 +37,13 @@ namespace RMASystem.Controllers
             return View(application);
         }
 
-        // GET: Applications/Create
+		// GET: Applications/Create
+		[Authorize(Roles = "Klient, Administrator")]
         public ActionResult Create()
         {
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name");
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator");
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator");
+            ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator");
+            ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Serwisant"), "Id", "Identificator");
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name");
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name");
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name");
@@ -60,6 +61,9 @@ namespace RMASystem.Controllers
             if (ModelState.IsValid)
             {
                 db.Application.Add(application);
+				CreateCode(application);
+				if(HttpContext.User.IsInRole("Klient")) SetClient(application);
+	            SetStatus(application);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -74,7 +78,31 @@ namespace RMASystem.Controllers
             return View(application);
         }
 
-        // GET: Applications/Edit/5
+	    void SetStatus(Application application) {
+		    using (var context = new RmaEntities()) {
+			    var statue = context.Statue.FirstOrDefault(s => s.Name == EStatue.Niepotwierdzony.ToString());
+			    if (statue != null)
+				    application.Statue_Id = statue.Id;
+		    }
+	    }
+
+	    void SetClient(Application application) {
+			using (var context = new RmaEntities()) {
+				var userEmail = HttpContext.User.Identity.Name;
+				var currentUser = context.User.FirstOrDefault(u => u.Email == userEmail);
+				application.Client_Id = currentUser.Id;
+			}
+		}
+
+	    void CreateCode(Application application) {
+		    int newId;
+		    using (var context = new RmaEntities()) {
+				newId = context.Application.Max(u => u.Id);
+		    }
+		    application.Name = $"{newId+1}/{DateTime.Today.Month}/{DateTime.Today.Year}";
+	    }
+
+	    // GET: Applications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,8 +115,8 @@ namespace RMASystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator", application.Client_Id);
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator", application.Employee_Id);
+            ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator", application.Client_Id);
+            ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Administrator"), "Id", "Identificator", application.Employee_Id);
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -110,8 +138,8 @@ namespace RMASystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
-            ViewBag.Client_Id = new SelectList(db.User, "Id", "Identificator", application.Client_Id);
-            ViewBag.Employee_Id = new SelectList(db.User, "Id", "Identificator", application.Employee_Id);
+            ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator", application.Client_Id);
+            ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Administrator"), "Id", "Identificator", application.Employee_Id);
             ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
             ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
             ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -153,5 +181,16 @@ namespace RMASystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+	    public ActionResult UserApplication() {
+		    int userId;
+		    using (var context = new RmaEntities()) {
+			    var userEmail = HttpContext.User.Identity.Name;
+			    var currentUser = context.User.FirstOrDefault(u => u.Email == userEmail);
+			    userId = currentUser.Id;
+		    }
+		    var application = db.Application.Where(a => a.Client_Id == userId).Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
+			return View("Index",application.ToList());
+		}
     }
 }

@@ -24,7 +24,7 @@
           <Property Name="Purschace" Type="date" Nullable="false" />
           <Property Name="Content" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="text" Nullable="false" />
-          <Property Name="Expectations" Type="text" Nullable="false" />
+          <Property Name="Expectations" Type="text" />
           <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Start" Type="date" />
           <Property Name="Pending" Type="date" />
@@ -123,7 +123,7 @@
           <Property Name="BankAccount_Id" Type="int" />
           <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Applicati__AppTy__7C4F7684">
+        <Association Name="FK__Applicati__AppTy__17F790F9">
           <End Role="AppType" Type="Self.AppType" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Clien__00200768">
+        <Association Name="FK__Applicati__Clien__1BC821DD">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -147,7 +147,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Emplo__01142BA1">
+        <Association Name="FK__Applicati__Emplo__1CBC4616">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,7 +159,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Produ__7B5B524B">
+        <Association Name="FK__Applicati__Produ__17036CC0">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -171,7 +171,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Reali__7D439ABD">
+        <Association Name="FK__Applicati__Reali__18EBB532">
           <End Role="Realization" Type="Self.Realization" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -183,7 +183,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Resul__7F2BE32F">
+        <Association Name="FK__Applicati__Resul__1AD3FDA4">
           <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +195,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__Statu__7E37BEF6">
+        <Association Name="FK__Applicati__Statu__19DFD96B">
           <End Role="Statue" Type="Self.Statue" Multiplicity="0..1" />
           <End Role="Application" Type="Self.Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Email__Applicati__03F0984C">
+        <Association Name="FK__Email__Applicati__1F98B2C1">
           <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
           <End Role="Email" Type="Self.Email" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,35 +280,35 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statue" EntityType="Self.Statue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Applicati__AppTy__7C4F7684" Association="Self.FK__Applicati__AppTy__7C4F7684">
+          <AssociationSet Name="FK__Applicati__AppTy__17F790F9" Association="Self.FK__Applicati__AppTy__17F790F9">
             <End Role="AppType" EntitySet="AppType" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Clien__00200768" Association="Self.FK__Applicati__Clien__00200768">
+          <AssociationSet Name="FK__Applicati__Clien__1BC821DD" Association="Self.FK__Applicati__Clien__1BC821DD">
             <End Role="User" EntitySet="User" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Emplo__01142BA1" Association="Self.FK__Applicati__Emplo__01142BA1">
+          <AssociationSet Name="FK__Applicati__Emplo__1CBC4616" Association="Self.FK__Applicati__Emplo__1CBC4616">
             <End Role="User" EntitySet="User" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Produ__7B5B524B" Association="Self.FK__Applicati__Produ__7B5B524B">
+          <AssociationSet Name="FK__Applicati__Produ__17036CC0" Association="Self.FK__Applicati__Produ__17036CC0">
             <End Role="Product" EntitySet="Product" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Reali__7D439ABD" Association="Self.FK__Applicati__Reali__7D439ABD">
+          <AssociationSet Name="FK__Applicati__Reali__18EBB532" Association="Self.FK__Applicati__Reali__18EBB532">
             <End Role="Realization" EntitySet="Realization" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Resul__7F2BE32F" Association="Self.FK__Applicati__Resul__7F2BE32F">
+          <AssociationSet Name="FK__Applicati__Resul__1AD3FDA4" Association="Self.FK__Applicati__Resul__1AD3FDA4">
             <End Role="Result" EntitySet="Result" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__Statu__7E37BEF6" Association="Self.FK__Applicati__Statu__7E37BEF6">
+          <AssociationSet Name="FK__Applicati__Statu__19DFD96B" Association="Self.FK__Applicati__Statu__19DFD96B">
             <End Role="Statue" EntitySet="Statue" />
             <End Role="Application" EntitySet="Application" />
           </AssociationSet>
-          <AssociationSet Name="FK__Email__Applicati__03F0984C" Association="Self.FK__Email__Applicati__03F0984C">
+          <AssociationSet Name="FK__Email__Applicati__1F98B2C1" Association="Self.FK__Email__Applicati__1F98B2C1">
             <End Role="Application" EntitySet="Application" />
             <End Role="Email" EntitySet="Email" />
           </AssociationSet>
@@ -353,7 +353,7 @@
           <Property Name="Purschace" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Expectations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expectations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Start" Type="DateTime" Precision="0" />
           <Property Name="Pending" Type="DateTime" Precision="0" />
