@@ -1,33 +1,77 @@
-﻿@using System.Web.UI.WebControls
-@model RMASystem.Models.ApplicationUser
-
-@{
-
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+	<meta name="viewport" content="width=device-width"/>
+	<title>Login</title>
 </head>
 <body>
 <div>
-	@{
-		if (HttpContext.Current.User.IsInRole("Administrator")) {
-			<h4>Admin Panel</h4>
-		}
-	}
 	<h2>Witaj @ViewBag.User.FirstName!</h2>
 	@{
 
-			if (!ViewBag.User.EmailConfirmed) {
+		if (!ViewBag.User.EmailConfirmed) {
 			<div class=".bg-info">
 				Wysłaliśmy Ci link aktywacyjny na adres @HttpContext.Current.User.Identity.Name
 			</div>
 		}
 	}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Twoje dane</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Imię:")
+							@ViewBag.User.FirstName
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Nazwisko:")
+							@ViewBag.User.LastName
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("E-mail:")
+							@ViewBag.User.Email
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Telefon:")
+							@ViewBag.User.Phone
+						</div>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Miasto:")
+							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Ulica:")
+							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+						</div>
+					</form>
+					<form class="form-inline">
+						<div class="form-group">
+							@Html.Label("Kod pocztowy:")
+							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	@Html.ActionLink("Zmień hasło", "ChangePassword", null, new { @class = "btn btn-primary" });
+	
 </div>
 </body>
 </html>

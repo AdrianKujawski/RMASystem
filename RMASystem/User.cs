@@ -9,22 +9,24 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
 
-namespace RMASystem
-{
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class User
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.Application = new HashSet<Application>();
-            this.Application1 = new HashSet<Application>();
-        }
-    
-        public int Id { get; set; }
+namespace RMASystem {
+
+	using System;
+	using System.Collections.Generic;
+
+
+	public partial class User {
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+		public User() {
+			this.Application = new HashSet<Application>();
+			this.Application1 = new HashSet<Application>();
+		}
+
+		public int Id { get; set; }
 
 		[Required]
 		[Display(Name = "Imie")]
@@ -42,7 +44,7 @@ namespace RMASystem
 		[Display(Name = "Telefon")]
 		[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefon musi być w formacie 123-456-789.")]
 		[StringLength(20, MinimumLength = 9)]
-        public string Phone { get; set; }
+		public string Phone { get; set; }
 
 		[Required]
 		[Display(Name = "E-mail")]
@@ -69,14 +71,32 @@ namespace RMASystem
 
 		public string FullName => $"{FirstName} {LastName}";
 
-	    public string Identificator => $"{FullName} ({Email})"; 
+		public string Identificator => $"{FullName} ({Email})";
 		public virtual Adress Adress { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Application { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application> Application1 { get; set; }
-        public virtual BankAccount BankAccount { get; set; }
-        public virtual Role Role { get; set; }
 
-    }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Application> Application { get; set; }
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Application> Application1 { get; set; }
+
+		public virtual BankAccount BankAccount { get; set; }
+		public virtual Role Role { get; set; }
+
+		static public User GetLogged(string email) {
+			using (var context = new RmaEntities()) {
+				return context.User.FirstOrDefault(u => u.Email == email);
+			}
+		}
+
+		static public void ChangePassword(string email, string password) {
+			using (var context = new RmaEntities()) {
+				var user = GetLogged(email);
+				context.User.FirstOrDefault(u => u.Id == user.Id).Password = password;
+				context.SaveChanges();
+			}
+		}
+	}
+
 }
+

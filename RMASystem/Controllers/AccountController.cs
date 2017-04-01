@@ -31,13 +31,11 @@ namespace RMASystem.Controllers {
 		[AllowAnonymous]
 		public ActionResult Index() {
 			if (!HttpContext.User.Identity.IsAuthenticated) return View();
-
-			using (var context = new RmaEntities()) {
 				var userEmail = HttpContext.User.Identity.Name;
-				var currentUser = context.User.FirstOrDefault(u => u.Email == userEmail);
+				var currentUser = RMASystem.User.GetLogged(userEmail);
 				ViewBag.User = currentUser;
 				return View("UserPanel");
-			}
+			
 		}
 
 		[HttpPost]
@@ -57,6 +55,11 @@ namespace RMASystem.Controllers {
 		public ActionResult Logout() {
 			FormsAuthentication.SignOut();
 			return RedirectToAction("Index");
+		}
+
+		[AllowAnonymous]
+		public ActionResult Register() {
+			return View();
 		}
 
 		[HttpPost]
@@ -139,11 +142,6 @@ namespace RMASystem.Controllers {
 			}
 		}
 
-		[AllowAnonymous]
-		public ActionResult Register() {
-			return View();
-		}
-
 		void SignInUser(string email) {
 			SetupFormsAuthTicket(email, false);
 			FormsAuthentication.SetAuthCookie(email, false);
@@ -178,6 +176,26 @@ namespace RMASystem.Controllers {
 				context.SaveChanges();
 				return RedirectToAction("Index");
 			}
+		}
+
+		public ActionResult ChangePassword() {
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult ChangePassword(ChangePasswordViewModel model) {
+
+			if (model.OldPassword != model.OldPasswordRepeated) ModelState.AddModelError("", "Hasła różnią się od siebie.");
+
+			var userEmail = HttpContext.User.Identity.Name;
+			var currentUser = RMASystem.User.GetLogged(userEmail);
+
+			if(currentUser.Password != model.OldPassword) ModelState.AddModelError("", "Obecne hasło jest niepoprawne.");
+
+			if (!ModelState.IsValid) return View();
+			
+			RMASystem.User.ChangePassword(userEmail, model.NewPassword);
+			return RedirectToAction("Index");
 		}
 	}
 
