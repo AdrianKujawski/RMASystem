@@ -25,6 +25,7 @@ namespace RMASystem
         public int Id { get; set; }
 		[Required]
 		[Display(Name = "Nazwa")]
+		[StringLength(30)]
 		public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
