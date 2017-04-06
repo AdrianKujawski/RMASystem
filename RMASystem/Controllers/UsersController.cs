@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RMASystem;
+using RMASystem.Helpers;
 
 namespace RMASystem.Controllers
 {
@@ -53,9 +54,9 @@ namespace RMASystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Phone,Email,Password,Role_Id,Adress_Id,BankAccount_Id")] User user)
         {
-            if (ModelState.IsValid)
-            {
-                db.User.Add(user);
+            if (ModelState.IsValid) {
+				RMASystem.User.SetFirstLetterOfNameToUpper(user);
+				db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +67,9 @@ namespace RMASystem.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
+	    
+
+	    // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +96,8 @@ namespace RMASystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+				RMASystem.User.SetFirstLetterOfNameToUpper(user);
+	            db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -103,7 +107,9 @@ namespace RMASystem.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+	    
+
+	    // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,5 +143,7 @@ namespace RMASystem.Controllers
             }
             base.Dispose(disposing);
         }
-    }
+
+		
+	}
 }

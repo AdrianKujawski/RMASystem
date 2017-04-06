@@ -237,7 +237,7 @@
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Helpers\StateChecker.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Helpers\UserAuthenctication.cs" />
     <Compile Include="Models\ViewModel\ChangePasswordViewModel.cs" />

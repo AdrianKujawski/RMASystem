@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using RMASystem.Helpers;
 
 namespace RMASystem {
 
@@ -30,13 +31,13 @@ namespace RMASystem {
 
 		[Required]
 		[Display(Name = "Imie")]
-		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Dozwolone są tylko litery")]
+		[RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$", ErrorMessage = "Dozwolone są tylko litery")]
 		[StringLength(30, MinimumLength = 2)]
 		public string FirstName { get; set; }
 
 		[Required]
 		[Display(Name = "Nazwisko")]
-		[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Dozwolone są tylko litery")]
+		[RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+$", ErrorMessage = "Dozwolone są tylko litery")]
 		[StringLength(40, MinimumLength = 2)]
 		public string LastName { get; set; }
 
@@ -97,6 +98,11 @@ namespace RMASystem {
 				context.User.FirstOrDefault(u => u.Id == user.Id).Password = password;
 				context.SaveChanges();
 			}
+		}
+
+		public static void SetFirstLetterOfNameToUpper(User user) {
+			user.FirstName = TextHelper.ChangeFirstLetterToUpper(user.FirstName);
+			user.LastName = TextHelper.ChangeFirstLetterToUpper(user.LastName);
 		}
 	}
 

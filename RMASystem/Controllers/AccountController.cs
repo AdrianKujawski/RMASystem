@@ -253,6 +253,7 @@ namespace RMASystem.Controllers {
 		}
 
 		void ChangeValues(User user, Adress address, BankAccount bankAccount, User oldUser) {
+			RMASystem.User.SetFirstLetterOfNameToUpper(user);
 			oldUser.FirstName = user.FirstName;
 			oldUser.LastName = user.LastName;
 			oldUser.Phone = user.Phone;
