@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// -----------------------------------------------------------------------
+// <copyright file="EmailHelper.cs">
+//     Copyright (c) 2017, Adrian Kujawski.
+// </copyright>
+// -----------------------------------------------------------------------
+
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace RMASystem.Helpers {
+
 	public class EmailHelper {
 		readonly NetworkCredential _credential;
 		readonly bool _enableSsl;
@@ -29,4 +32,5 @@ namespace RMASystem.Helpers {
 			}
 		}
 	}
+
 }

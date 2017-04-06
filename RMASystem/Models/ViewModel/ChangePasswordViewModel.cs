@@ -13,14 +13,14 @@ namespace RMASystem.Models.ViewModel {
 		public string OldPassword { get; set; }
 
 		[Required]
-		[DataType(DataType.Password)]
-		[Display(Name = "Powtórz hasło")]
-		public string OldPasswordRepeated { get; set; }
-
-		[Required]
 		[Display(Name = "Nowe hasło")]
 		[DataType(DataType.Password)]
 		[StringLength(30, MinimumLength = 8)]
 		public string NewPassword { get; set; }
+
+		[Required]
+		[DataType(DataType.Password)]
+		[Display(Name = "Powtórz nowe hasło")]
+		public string NewPasswordRepeated { get; set; }
 	}
 }

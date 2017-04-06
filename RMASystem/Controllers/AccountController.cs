@@ -193,7 +193,7 @@ namespace RMASystem.Controllers {
 
 		[HttpPost]
 		public ActionResult ChangePassword(ChangePasswordViewModel model) {
-			if (model.OldPassword != model.OldPasswordRepeated) ModelState.AddModelError("", "Hasła różnią się od siebie.");
+			if (model.NewPassword != model.NewPasswordRepeated) ModelState.AddModelError("", "Hasła różnią się od siebie.");
 
 			var userEmail = HttpContext.User.Identity.Name;
 			var currentUser = RMASystem.User.GetLogged(userEmail);

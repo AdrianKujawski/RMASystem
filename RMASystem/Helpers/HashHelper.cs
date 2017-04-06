@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HashHelper.cs">
-//     Copyright (c) 2017, Adrian Kujawski.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
