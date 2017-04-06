@@ -51,26 +51,29 @@
 					<form class="form-inline">
 						<div class="form-group">
 							@Html.Label("Miasto:")
-							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+							@(ViewBag.City ?? "")
 						</div>
 					</form>
 					<form class="form-inline">
 						<div class="form-group">
 							@Html.Label("Ulica:")
-							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+							@(ViewBag.Street ?? "")
 						</div>
 					</form>
 					<form class="form-inline">
 						<div class="form-group">
 							@Html.Label("Kod pocztowy:")
-							@(ViewBag.User.Adress != null ? ViewBag.User.Adress.City : "")
+							@(ViewBag.ZipCode ?? "")
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+		<form class="form-inline">
+			@Html.ActionLink("Zmień hasło", "ChangePassword", null, new { @class = "btn btn-primary" })
+			@Html.ActionLink("Zmień dane", "EditDate", new { userId = ViewBag.User.Id }, new { @class = "btn btn-primary" })
+		</form>
 	</div>
-	@Html.ActionLink("Zmień hasło", "ChangePassword", null, new { @class = "btn btn-primary" });
 	
 </div>
 </body>

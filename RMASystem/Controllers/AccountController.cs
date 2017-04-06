@@ -31,17 +31,27 @@ namespace RMASystem.Controllers {
 		[AllowAnonymous]
 		public ActionResult Index() {
 			if (!HttpContext.User.Identity.IsAuthenticated) return View();
-				var userEmail = HttpContext.User.Identity.Name;
-				var currentUser = RMASystem.User.GetLogged(userEmail);
-				ViewBag.User = currentUser;
-				return View("UserPanel");
-			
+
+			var userEmail = HttpContext.User.Identity.Name;
+			var currentUser = RMASystem.User.GetLogged(userEmail);
+			ViewBag.User = currentUser;
+			ViewBag.City = currentUser.Adress?.City;
+			ViewBag.Street = currentUser.Adress?.Street;
+			ViewBag.ZipCode = currentUser.Adress?.ZipCode;
+			return View("UserPanel");
 		}
 
 		[HttpPost]
 		[AllowAnonymous]
 		public ActionResult Login(ApplicationUser model) {
-			if (!ModelState.IsValid) return View("Index");
+
+#if DEBUG
+			if (string.IsNullOrEmpty(model.Email)) {
+				SignInUser("adrian.kujawski@outlook.com");
+				return RedirectToAction("Index");
+			}
+#endif
+				if (!ModelState.IsValid) return View("Index");
 
 			if (_userAuthenctication.CheckLogin(model.Email, model.Password)) {
 				SignInUser(model.Email);
@@ -79,15 +89,14 @@ namespace RMASystem.Controllers {
 		async Task SendVerificationEmail(RegisterUserViewModel userEmail) {
 			var message = new MailMessage();
 			PrepareMessage(message, userEmail);
-			var emailHelper = new EmailHelper(true);
+			var emailHelper = new EmailHelper();
 			await emailHelper.Send(message);
 		}
 
-
 		void PrepareMessage(MailMessage message, RegisterUserViewModel model) {
 			var token = HashHelper.Encrypt(model.Id.ToString(), model.Email);
-			message.To.Add(new MailAddress(model.Email));  
-			message.From = new MailAddress(Settings.EmailAddress);  
+			message.To.Add(new MailAddress(model.Email));
+			message.From = new MailAddress(Settings.EmailAddress);
 			message.Subject = "Rejestracja w systemie RMA";
 			message.Body = $"Witaj {model.FirstName}!{Environment.NewLine}Kliknij link poniżej aby potwierdzić adres e-mail." +
 							$"{Environment.NewLine}{Url.Action("ConfirmEmail", "Account", new { Token = token, model.Email }, Request.Url.Scheme)}";
@@ -184,18 +193,99 @@ namespace RMASystem.Controllers {
 
 		[HttpPost]
 		public ActionResult ChangePassword(ChangePasswordViewModel model) {
-
 			if (model.OldPassword != model.OldPasswordRepeated) ModelState.AddModelError("", "Hasła różnią się od siebie.");
 
 			var userEmail = HttpContext.User.Identity.Name;
 			var currentUser = RMASystem.User.GetLogged(userEmail);
 
-			if(currentUser.Password != model.OldPassword) ModelState.AddModelError("", "Obecne hasło jest niepoprawne.");
+			if (currentUser.Password != model.OldPassword) ModelState.AddModelError("", "Obecne hasło jest niepoprawne.");
 
 			if (!ModelState.IsValid) return View();
-			
+
 			RMASystem.User.ChangePassword(userEmail, model.NewPassword);
 			return RedirectToAction("Index");
+		}
+
+		public ActionResult EditDate(int? userId) {
+			if (userId == null) {
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			var context = new RmaEntities();
+			var user = context.User.Find(userId);
+			if (user == null) {
+				return HttpNotFound();
+			}
+
+			return View(user);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult EditDate([Bind(Include = "Id,FirstName,LastName,Phone,Email,Password,Role_Id,Adress_Id,BankAccount_Id")] User user, [Bind(Include = "City,Street,ZipCode")] Adress adress,
+									[Bind(Include = "Name,AccountNumber")] BankAccount bankAccount) {
+			if (!ModelState.IsValid) return View(user);
+
+			if (!ChangeValues(user, adress, bankAccount)) return View(user);
+
+			var isEmailChanged = HttpContext.User.Identity.Name != user.Email;
+			if (!isEmailChanged) return RedirectToAction("Index");
+
+			FormsAuthentication.SignOut();
+			SignInUser(user.Email);
+			return RedirectToAction("Index");
+		}
+
+		bool ChangeValues(User user, Adress address, BankAccount bankAccount) {
+			using (var context = new RmaEntities()) {
+				var oldUser = context.User.Find(user.Id);
+				if (oldUser != null) {
+					if (context.User.Any(m => m.Email == user.Email && m.Id != user.Id)) {
+						ModelState.AddModelError("", "Podany e-mail już istnieje!");
+						return false;
+					}
+					ChangeValues(user, address, bankAccount, oldUser);
+				}
+
+				context.SaveChanges();
+				return true;
+			}
+		}
+
+		void ChangeValues(User user, Adress address, BankAccount bankAccount, User oldUser) {
+			oldUser.FirstName = user.FirstName;
+			oldUser.LastName = user.LastName;
+			oldUser.Phone = user.Phone;
+			oldUser.Email = user.Email;
+
+			if (oldUser.Adress_Id == null) oldUser.Adress_Id = CreateAddress(address);
+			else {
+				oldUser.Adress.City = address.City;
+				oldUser.Adress.Street = address.Street;
+				oldUser.Adress.ZipCode = address.ZipCode;
+			}
+
+				if (oldUser.BankAccount_Id == null) oldUser.BankAccount_Id = CreateBankAccount(bankAccount);
+				else {
+				oldUser.BankAccount.Name = bankAccount.Name;
+				oldUser.BankAccount.AccountNumber = bankAccount.AccountNumber;
+			}
+		}
+
+		int CreateBankAccount(BankAccount bankAccount) {
+			using (var context = new RmaEntities()) {
+				var addedBankAccount = context.BankAccount.Add(bankAccount);
+				context.SaveChanges();
+				return addedBankAccount.Id;
+			}
+		}
+
+		int CreateAddress(Adress address) {
+			using (var context = new RmaEntities()) {
+				var addedAddress = context.Adress.Add(address);
+				context.SaveChanges();
+				return addedAddress.Id;
+			}
 		}
 	}
 

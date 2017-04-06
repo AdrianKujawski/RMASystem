@@ -8,7 +8,9 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
+using RMASystem.Helpers;
 
 namespace RMASystem.Controllers {
 
@@ -17,12 +19,15 @@ namespace RMASystem.Controllers {
 		RmaEntities db = new RmaEntities();
 
 		// GET: Applications
+		[Authorize(Roles = "Administrator,Serwisant")]
 		public ActionResult Index() {
-			var application = db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
+			var application =
+				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
 			return View(application.ToList());
 		}
 
 		// GET: Applications/Details/5
+		[Authorize(Roles = "Klient, Administrator,Serwisant")]
 		public ActionResult Details(int? id) {
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -37,7 +42,7 @@ namespace RMASystem.Controllers {
 		}
 
 		// GET: Applications/Create
-		[Authorize(Roles = "Klient, Administrator")]
+		[Authorize(Roles = "Klient, Administrator,Serwisant")]
 		public ActionResult Create() {
 			ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name");
 			ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator");
@@ -54,6 +59,7 @@ namespace RMASystem.Controllers {
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Klient, Administrator,Serwisant")]
 		public ActionResult Create(
 			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application) {
 			if (ModelState.IsValid) {
@@ -62,7 +68,9 @@ namespace RMASystem.Controllers {
 				if (HttpContext.User.IsInRole("Klient")) SetClient(application);
 				SetStatus(application);
 				db.SaveChanges();
-				return RedirectToAction("Index");
+				return HttpContext.User.IsInRole("Klient")
+							? RedirectToAction("UserApplication")
+							: RedirectToAction("Index");
 			}
 
 			ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
@@ -98,6 +106,7 @@ namespace RMASystem.Controllers {
 		}
 
 		// GET: Applications/Edit/5
+		[Authorize(Roles = "Administrator,Serwisant")]
 		public ActionResult Edit(int? id) {
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -108,9 +117,10 @@ namespace RMASystem.Controllers {
 				return HttpNotFound();
 			}
 
+			ViewBag.Old = application.Statue.Name;
 			ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
 			ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator", application.Client_Id);
-			ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Administrator"), "Id", "Identificator", application.Employee_Id);
+			ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Serwisant"), "Id", "Identificator", application.Employee_Id);
 			ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
 			ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
 			ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -123,17 +133,22 @@ namespace RMASystem.Controllers {
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(
-			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application) {
+		[Authorize(Roles = "Administrator,Serwisant")]
+		public async System.Threading.Tasks.Task<ActionResult> Edit(
+			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application, string oldStatue) {
 			if (ModelState.IsValid) {
 				db.Entry(application).State = EntityState.Modified;
+				if (IsStatueChanged(application, oldStatue)) {
+					var emailHelper = new EmailHelper();
+					await emailHelper.Send(PrepareChangeStatusMessage(application));
+				}
 				db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 
 			ViewBag.AppType_Id = new SelectList(db.AppType, "Id", "Name", application.AppType_Id);
 			ViewBag.Client_Id = new SelectList(db.User.Where(u => u.Role.Name == "Klient"), "Id", "Identificator", application.Client_Id);
-			ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Administrator"), "Id", "Identificator", application.Employee_Id);
+			ViewBag.Employee_Id = new SelectList(db.User.Where(u => u.Role.Name == "Serwisant"), "Id", "Identificator", application.Employee_Id);
 			ViewBag.Product_Id = new SelectList(db.Product, "Id", "Name", application.Product_Id);
 			ViewBag.Realization_Id = new SelectList(db.Realization, "Id", "Name", application.Realization_Id);
 			ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
@@ -141,7 +156,28 @@ namespace RMASystem.Controllers {
 			return View(application);
 		}
 
+		MailMessage PrepareChangeStatusMessage(Application application) {
+			var message = new MailMessage();
+			var user = db.User.Find(application.Client_Id);
+			if (user != null) message.To.Add(new MailAddress(user.Email));
+			message.From = new MailAddress(Settings.EmailAddress);
+			message.Subject = $"Zmiana statusu zgłoszenia {application.Name}";
+
+			var newState = db.Statue.Find(application.Statue_Id)?.Name;
+			var employee = db.User.Find(application.Employee_Id)?.Identificator;
+			message.Body =
+				$"Status twojego zgłoszenia został zmieniony na {newState}.{Environment.NewLine}Twoim zgłoszeniem zajmuje się {employee}.{Environment.NewLine}{Environment.NewLine}Pozdrawiamy!";
+
+			return message;
+		}
+
+		bool IsStatueChanged(Application application, string oldStatue) {
+			var statue = db.Statue.Find(application.Statue_Id);
+			return statue != null && statue.Name != oldStatue;
+		}
+
 		// GET: Applications/Delete/5
+		[Authorize(Roles = "Administrator,Serwisant")]
 		public ActionResult Delete(int? id) {
 			if (id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,6 +194,7 @@ namespace RMASystem.Controllers {
 		// POST: Applications/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Administrator,Serwisant")]
 		public ActionResult DeleteConfirmed(int id) {
 			var application = db.Application.Find(id);
 			db.Application.Remove(application);
@@ -165,19 +202,11 @@ namespace RMASystem.Controllers {
 			return RedirectToAction("Index");
 		}
 
-		protected override void Dispose(bool disposing) {
-			if (disposing) {
-				db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
 		public ActionResult UserApplication() {
 			var userEmail = HttpContext.User.Identity.Name;
 			var currentUser = RMASystem.User.GetLogged(userEmail);
-			var userId = currentUser.Id;
 			var application =
-				db.Application.Where(a => a.Client_Id == userId)
+				db.Application.Where(a => a.Client_Id == currentUser.Id)
 				.Include(a => a.AppType)
 				.Include(a => a.User)
 				.Include(a => a.User1)

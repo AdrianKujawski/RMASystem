@@ -16,7 +16,7 @@ namespace RMASystem.Tests {
 
 		[Fact]
 		void send_email_to_user() {
-			var emailHelper = new EmailHelper(true);
+			var emailHelper = new EmailHelper();
 			var message = new MailMessage();
 			message.To.Add(new MailAddress("adrian.kujawski@outlook.com"));
 			message.From = new MailAddress(Settings.EmailAddress);

@@ -84,9 +84,11 @@ namespace RMASystem {
 		public virtual Role Role { get; set; }
 
 		static public User GetLogged(string email) {
-			using (var context = new RmaEntities()) {
-				return context.User.FirstOrDefault(u => u.Email == email);
-			}
+			User user = null;
+			var context = new RmaEntities();
+				user = context.User.FirstOrDefault(u => u.Email == email);
+			
+			return user;
 		}
 
 		static public void ChangePassword(string email, string password) {

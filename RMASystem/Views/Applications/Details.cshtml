@@ -1,170 +1,195 @@
-﻿@model RMASystem.Application
+﻿@model Application
 
 @{
-    
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Szczegóły</title>
+	<meta name="viewport" content="width=device-width"/>
+	<title>Szczegóły</title>
 </head>
 <body>
-    <div>
-        <h4>Application</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayName("Nazwa")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Nr faktury")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.InvoiceNo)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Data zakupu")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Purschace)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Zawartość")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Content)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Opis")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Oczekiwania")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Expectations)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Koszt")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Cost)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Data otwarcia")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Start)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Data potwierdzenia")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Pending)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Data rozpoczęcia")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.InProgress)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Data zakończenia")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.End)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Typ zlecenia")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.AppType.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Klient")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.User.Identificator)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Serwisant")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.User1.Identificator)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Produkt")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Product.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Sposób realizacji")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Realization.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Rezultat")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Result.Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayName("Status")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Statue.Name)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-		@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new {@class = "btn btn-primary btn-sm"})
-        @Html.ActionLink("Wróć do listy", "Index", null, new {@class = "btn btn-primary btn-sm"})
-    </p>
+<div>
+	<h4>Zgłoszenie</h4>
+	<hr/>
+
+	<div class="form-group">
+		<div class="row">
+			<div class="col-md-2 col-md-offset-5">
+				<div class="h2">
+					<strong>@Html.DisplayName("Status")</strong>
+					@Html.DisplayFor(m => m.Statue.Name)
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayName("Nazwa")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Nr faktury")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.InvoiceNo)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Data zakupu")
+					</dt>
+					<dd>
+						@Html.DisplayFor(model => model.Purschace)
+					</dd>
+					<dt>
+						@Html.DisplayName("Typ zlecenia")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AppType.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Produkt")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Product.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Koszt")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Cost)
+					</dd>
+				</dl>
+			</div>
+
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayName("Data otwarcia")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Start)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Data potwierdzenia")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Pending)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Data rozpoczęcia")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.InProgress)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Data zakończenia")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.End)
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayName("Klient")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.User.Identificator)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Serwisant")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.User1.Identificator)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Sposób realizacji")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Realization.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Rezultat")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Result.Name)
+					</dd>
+
+				</dl>
+			</div>
+
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayName("Zawartość")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Content)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Opis")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Description)
+					</dd>
+
+					<dt>
+						@Html.DisplayName("Oczekiwania")
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Expectations)
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<dl class="dl-horizontal">
+
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+	@Html.ActionLink("Wróć do listy", "Index", null, new { @class = "btn btn-primary btn-sm" })
+</p>
 </body>
 </html>

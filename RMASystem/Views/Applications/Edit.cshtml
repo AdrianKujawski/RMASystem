@@ -21,7 +21,8 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-    
+            @Html.Hidden("oldStatue", (string)ViewBag.Old)
+
             <div class="form-group">
                 @Html.Label("Kod", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -175,7 +176,7 @@
     }
     
     <div>
-        @Html.ActionLink("Wróć do listy", "Index", null, new {@class = "btn btn-primary btn-sm"})
+        @Html.ActionLink("Wróć do listy", "Index", new {old = ViewBag.Old}, new {@class = "btn btn-primary btn-sm"})
     </div>
 </body>
 </html>

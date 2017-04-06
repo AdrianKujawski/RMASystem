@@ -11,7 +11,7 @@ namespace RMASystem.Helpers {
 		readonly NetworkCredential _credential;
 		readonly bool _enableSsl;
 
-		public EmailHelper(bool enableSsl = false) {
+		public EmailHelper(bool enableSsl = true) {
 			_enableSsl = enableSsl;
 			_credential = new NetworkCredential {
 				UserName = Settings.EmailAddress,

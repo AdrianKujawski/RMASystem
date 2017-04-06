@@ -17,7 +17,7 @@ namespace RMASystem.Controllers.Tests {
 		[Fact]
 		public void login_user_from_db() {
 			var email = "adrian.kujawski@outlook.com";
-			var password = "adrian123";
+			var password = "12345678";
 			var result = execute(email, password);
 
 			Assert.True(result);
