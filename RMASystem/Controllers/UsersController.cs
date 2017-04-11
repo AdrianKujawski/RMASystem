@@ -131,11 +131,27 @@ namespace RMASystem.Controllers
         {
             User user = db.User.Find(id);
             db.User.Remove(user);
+	        db.Adress.Remove(user.Adress);
+	        db.BankAccount.Remove(user.BankAccount);
+	        RemoveApplication(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+	    void RemoveApplication(User user) {
+		    var applications = db.Application.Select(a => a).Where(a => a.Client_Id == user.Id);
+			RemoveEmails(applications);
+			db.Application.RemoveRange(applications);
+	    }
+
+	    void RemoveEmails(IEnumerable<Application> apps) {
+		    foreach (var app in apps) {
+			    var emailsToRemove = db.Email.Select(e => e).Where(e => e.Application_Id == app.Id);
+			    db.Email.RemoveRange(emailsToRemove);
+		    }
+	    }
+
+	    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
