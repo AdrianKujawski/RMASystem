@@ -168,6 +168,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\RmaSystem.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="RmaEntity.Context.tt">
@@ -235,12 +236,14 @@
     </Compile>
     <Compile Include="Helpers\ApplicationRoleProvider.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\EmailProvider.cs" />
     <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Helpers\UserAuthenctication.cs" />
     <Compile Include="Models\ViewModel\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\ViewModel\EmailsViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterUserViewModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
@@ -356,6 +359,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\EditDate.cshtml" />
+    <Content Include="Views\Applications\MessageHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

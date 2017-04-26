@@ -17,7 +17,7 @@
 
 	<div class="form-group">
 		<div class="row">
-			<div class="col-md-2 col-md-offset-5">
+			<div class="col-md-4 col-md-offset-4">
 				<div class="h2">
 					<strong>@Html.DisplayName("Status")</strong>
 					@Html.DisplayFor(m => m.Statue.Name)
@@ -83,7 +83,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayFor(model => model.Start)
+						@Html.DisplayName(Model.Start != null ? Model.Start.ToString() : "-")
 					</dd>
 
 					<dt>
@@ -91,7 +91,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayFor(model => model.Pending)
+						@Html.DisplayName(Model.Pending != null ? Model.Pending.ToString() : "-")
 					</dd>
 
 					<dt>
@@ -99,7 +99,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayFor(model => model.InProgress)
+						@Html.DisplayName(Model.InProgress != null ? Model.InProgress.ToString() : "-")
 					</dd>
 
 					<dt>
@@ -107,7 +107,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayFor(model => model.End)
+						@Html.DisplayName(Model.End != null ? Model.End.ToString() : "-")
 					</dd>
 				</dl>
 			</div>
@@ -153,32 +153,32 @@
 				</dl>
 			</div>
 
-			<div class="col-md-6">
-				<dl class="dl-horizontal">
-					<dt>
-						@Html.DisplayName("Zawartość")
-					</dt>
+		</div>
 
-					<dd>
+		<div class="row" style="Word-wrap: break-word;">
+			<div class="col-md-4">
+				<div class="panel panel-default" style="height: 250px;">
+					<div class="panel-heading">@Html.Label("Zawartość")</div>
+					<div class="panel-body" >
 						@Html.DisplayFor(model => model.Content)
-					</dd>
-
-					<dt>
-						@Html.DisplayName("Opis")
-					</dt>
-
-					<dd>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default" style="height: 250px;">
+					<div class="panel-heading">@Html.Label("Opis")</div>
+					<div class="panel-body">
 						@Html.DisplayFor(model => model.Description)
-					</dd>
-
-					<dt>
-						@Html.DisplayName("Oczekiwania")
-					</dt>
-
-					<dd>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default" style="height: 250px;">
+					<div class="panel-heading">@Html.Label("Oczekiwania")</div>
+					<div class="panel-body">
 						@Html.DisplayFor(model => model.Expectations)
-					</dd>
-				</dl>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -188,7 +188,11 @@
 	</dl>
 </div>
 <p>
-	@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+	@Html.ActionLink("Historia wiadomości", "MessageHistory", new { applicationId = Model.Id, clientEMail = Model.User.Email}, new { @class = "btn btn-primary btn-sm" })
+	@if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
+		@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+
+	}
 	@Html.ActionLink("Wróć do listy", "Index", null, new { @class = "btn btn-primary btn-sm" })
 </p>
 </body>

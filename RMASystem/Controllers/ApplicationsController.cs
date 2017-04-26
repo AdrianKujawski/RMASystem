@@ -9,8 +9,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using RMASystem.Helpers;
+using RMASystem.Models.ViewModel;
 
 namespace RMASystem.Controllers {
 
@@ -134,13 +136,22 @@ namespace RMASystem.Controllers {
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Administrator,Serwisant")]
-		public async System.Threading.Tasks.Task<ActionResult> Edit(
+		public async Task<ActionResult> Edit(
 			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application, string oldStatue) {
 			if (ModelState.IsValid) {
 				db.Entry(application).State = EntityState.Modified;
 				if (IsStatueChanged(application, oldStatue)) {
-					var emailHelper = new EmailHelper();
-					await emailHelper.Send(PrepareChangeStatusMessage(application));
+					var mailMessage = PrepareChangeStatusMessage(application);
+					var mailEntity = new Email {
+						Sender = mailMessage.From.ToString(),
+						Reciper = mailMessage.To.ToString(),
+						Subject = mailMessage.Subject,
+						Content = mailMessage.Body,
+						Application_Id = application.Id,
+						PostDate = DateTime.Now
+					};
+					await SendMessage(mailMessage);
+					SaveMessage(mailEntity);
 				}
 				db.SaveChanges();
 				return RedirectToAction("Index");
@@ -154,6 +165,16 @@ namespace RMASystem.Controllers {
 			ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
 			ViewBag.Statue_Id = new SelectList(db.Statue, "Id", "Name", application.Statue_Id);
 			return View(application);
+		}
+
+		static void SaveMessage(Email mailEntity) {
+			var emailProvider = new EmailProvider(mailEntity);
+			emailProvider.SaveToDb();
+		}
+
+		static async Task SendMessage(MailMessage mailMessage) {
+			var emailHelper = new EmailHelper();
+			await emailHelper.Send(mailMessage);
 		}
 
 		MailMessage PrepareChangeStatusMessage(Application application) {
@@ -215,6 +236,14 @@ namespace RMASystem.Controllers {
 				.Include(a => a.Result)
 				.Include(a => a.Statue);
 			return View("Index", application.ToList());
+		}
+
+		public ActionResult MessageHistory(int applicationId, string clientEMail) {
+			var context = new RmaEntities();
+				var emails = context.Email.Where(e => e.Application_Id == applicationId).ToList();
+				var model = new EmailsViewModel(emails, clientEMail);
+				return View(model);
+			
 		}
 	}
 
