@@ -62,14 +62,28 @@ namespace RMASystem.Controllers {
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Klient, Administrator,Serwisant")]
-		public ActionResult Create(
+		public async Task<ActionResult> Create(
 			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application) {
 			if (ModelState.IsValid) {
 				db.Application.Add(application);
 				CreateCode(application);
 				if (HttpContext.User.IsInRole("Klient")) SetClient(application);
 				SetStatus(application);
+				SetStatusDate(application);
 				db.SaveChanges();
+				
+				var mailMessage = PrepareNewMessage(application);
+				var mailEntity = new Email {
+					Sender = mailMessage.From.ToString(),
+					Reciper = mailMessage.To.ToString(),
+					Subject = mailMessage.Subject,
+					Content = mailMessage.Body,
+					Application_Id = application.Id,
+					PostDate = DateTime.Now
+				};
+				await SendMessage(mailMessage);
+				SaveMessage(mailEntity);
+
 				return HttpContext.User.IsInRole("Klient")
 							? RedirectToAction("UserApplication")
 							: RedirectToAction("Index");
@@ -87,7 +101,8 @@ namespace RMASystem.Controllers {
 
 		void SetStatus(Application application) {
 			using (var context = new RmaEntities()) {
-				var statue = context.Statue.FirstOrDefault(s => s.Name == EStatue.Niepotwierdzony.ToString());
+				var statusName = Statue.StatusDictionary[EStatue.NotConfirmed];
+				var statue = context.Statue.FirstOrDefault(s => s.Name == statusName);
 				if (statue != null)
 					application.Statue_Id = statue.Id;
 			}
@@ -138,9 +153,20 @@ namespace RMASystem.Controllers {
 		[Authorize(Roles = "Administrator,Serwisant")]
 		public async Task<ActionResult> Edit(
 			[Bind(Include = "Id,Name,InvoiceNo,Purschace,Content,Description,Expectations,Cost,Start,Pending,InProgress,End,Product_Id,AppType_Id,Realization_Id,Statue_Id,Result_Id,Client_Id,Employee_Id")] Application application, string oldStatue) {
+
+			if (IsPreviousStatus(application, oldStatue)) {
+				ModelState.AddModelError(string.Empty, "Nie możesz zmienić statusu na poprzedni.");
+			}
+
+			if (application.Employee_Id == null) {
+				ModelState.AddModelError(string.Empty, "Nie wybrano serwisanta.");
+			}
+
 			if (ModelState.IsValid) {
 				db.Entry(application).State = EntityState.Modified;
 				if (IsStatueChanged(application, oldStatue)) {
+
+					SetStatusDate(application);
 					var mailMessage = PrepareChangeStatusMessage(application);
 					var mailEntity = new Email {
 						Sender = mailMessage.From.ToString(),
@@ -177,13 +203,16 @@ namespace RMASystem.Controllers {
 			await emailHelper.Send(mailMessage);
 		}
 
-		MailMessage PrepareChangeStatusMessage(Application application) {
-			var message = new MailMessage();
-			var user = db.User.Find(application.Client_Id);
-			if (user != null) message.To.Add(new MailAddress(user.Email));
-			message.From = new MailAddress(Settings.EmailAddress);
-			message.Subject = $"Zmiana statusu zgłoszenia {application.Name}";
+		MailMessage PrepareNewMessage(Application application) {
+			var message = PrepareMessage(application);
+			message.Subject = $"Przyjęcie zgłoszenia {application.Name}";
+			message.Body = $"Dziękujemy za złożenie zgłoszenia!{Environment.NewLine}Już niedługo jeden z naszych pracowników zajmie się twoim zgłoszeniem.{Environment.NewLine}{Environment.NewLine}Pozdrawiamy!";
+			return message;
+		}
 
+		MailMessage PrepareChangeStatusMessage(Application application) {
+			var message = PrepareMessage(application);
+			message.Subject = $"Zmiana statusu zgłoszenia {application.Name}";
 			var newState = db.Statue.Find(application.Statue_Id)?.Name;
 			var employee = db.User.Find(application.Employee_Id)?.Identificator;
 			message.Body =
@@ -192,9 +221,41 @@ namespace RMASystem.Controllers {
 			return message;
 		}
 
+		MailMessage PrepareMessage(Application application) {
+			var message = new MailMessage();
+			var user = db.User.Find(application.Client_Id);
+			if (user != null) message.To.Add(new MailAddress(user.Email));
+			message.From = new MailAddress(Settings.EmailAddress);
+			return message;
+		}
+
 		bool IsStatueChanged(Application application, string oldStatue) {
 			var statue = db.Statue.Find(application.Statue_Id);
 			return statue != null && statue.Name != oldStatue;
+		}
+
+		bool IsPreviousStatus(Application application, string oldStatue) {
+			var status = db.Statue.Find(application.Statue_Id);
+			var oldStatus = Statue.StatusDictionary.FirstOrDefault(s => s.Value == oldStatue).Key;
+			var newStatus = Statue.StatusDictionary.FirstOrDefault(s => s.Value == status.Name).Key;
+			return newStatus < oldStatus;
+
+		}
+
+		void SetStatusDate(Application application) {
+			var statusName = db.Statue.Find(application.Statue_Id).Name;
+			var status = Statue.StatusDictionary.FirstOrDefault(s => s.Value == statusName).Key;
+			switch (status) {
+				case EStatue.NotConfirmed: application.Start = DateTime.Now;
+					break;
+				case EStatue.Pending: application.Pending = DateTime.Now;
+					break;
+				case EStatue.InProgrss: application.InProgress = DateTime.Now;
+					break;
+				case EStatue.Sended: application.End = DateTime.Now;
+					break;
+			}
+
 		}
 
 		// GET: Applications/Delete/5

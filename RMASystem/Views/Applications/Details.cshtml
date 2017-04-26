@@ -83,7 +83,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayName(Model.Start != null ? Model.Start.ToString() : "-")
+						@Html.DisplayName(Model.Start != null ? $"{Model.Start:f}" : "-")
 					</dd>
 
 					<dt>
@@ -91,7 +91,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayName(Model.Pending != null ? Model.Pending.ToString() : "-")
+						@Html.DisplayName(Model.Pending != null ? $"{Model.Pending:f}" : "-")
 					</dd>
 
 					<dt>
@@ -99,7 +99,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayName(Model.InProgress != null ? Model.InProgress.ToString() : "-")
+						@Html.DisplayName(Model.InProgress != null ? $"{Model.InProgress:f}" : "-")
 					</dd>
 
 					<dt>
@@ -107,7 +107,7 @@
 					</dt>
 
 					<dd>
-						@Html.DisplayName(Model.End != null ? Model.End.ToString() : "-")
+						@Html.DisplayName(Model.End != null ? $"{Model.End:f}" : "-")
 					</dd>
 				</dl>
 			</div>

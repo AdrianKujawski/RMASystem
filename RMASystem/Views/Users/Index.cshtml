@@ -22,12 +22,14 @@
             <th>
                 @Html.DisplayName("Telefon")
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayName("Hasło")
-            </th>
+	        <th>
+		        @Html.DisplayNameFor(model => model.Email)
+	        </th>
+        <!--
+        <th>
+	        @Html.DisplayName("Hasło")
+        </th>
+		-->
             <th>
                 @Html.DisplayName("Miasto")
             </th>
@@ -51,12 +53,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Email)
+			</td>
+    <!--
+    <td>
+	    @Html.DisplayFor(modelItem => item.Password)
+    </td>
+-->
             <td>
                 @Html.DisplayFor(modelItem => item.Adress.City)
             </td>

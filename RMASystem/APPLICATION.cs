@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using RMASystem.Validator;
 
 namespace RMASystem
@@ -22,8 +23,9 @@ namespace RMASystem
         {
             this.Email = new HashSet<Email>();
         }
-		
-        public int Id { get; set; }
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int Id { get; set; }
 
 		[Display(Name = "Kod")]
 		public string Name { get; set; }

@@ -5,6 +5,9 @@
 // -----------------------------------------------------------------------
 
 public enum EStatue {
-Niepotwierdzony,
-Oczekujący
+NotConfirmed,
+Pending,
+InProgrss,
+Sended
 }
+
