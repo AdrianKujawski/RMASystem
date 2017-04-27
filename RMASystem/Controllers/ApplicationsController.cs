@@ -298,7 +298,8 @@ namespace RMASystem.Controllers {
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = "Administrator,Serwisant")]
 		public ActionResult DeleteConfirmed(int id) {
-			var application = db.Application.Find(id);
+			var application = db.Application.Include(a => a.Email).FirstOrDefault(a => a.Id == id);
+			db.Email.RemoveRange(application.Email);
 			db.Application.Remove(application);
 			db.SaveChanges();
 			return RedirectToAction("Index");
