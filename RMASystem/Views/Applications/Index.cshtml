@@ -16,94 +16,106 @@
 </p>
 
 
-
-<div class="table-responsive">
-	<table class="table table-hover table-bordered">
-		<tr>
-			<th>
-				@Html.DisplayName("Kod")
-			</th>
-			<th>
-				@Html.DisplayName("Nr faktury")
-			</th>
-			<th>
-				@Html.DisplayName("Produkt")
-			</th>
-			<th>
-				@Html.DisplayName("Data otwarcia")
-			</th>
-			<th>
-				@Html.DisplayName("Typ zlecenia")
-			</th>
-			<th>
-				@Html.DisplayName("Klient")
-			</th>
-			<th>
-				@Html.DisplayName("Serwisant")
-			</th>
-			<th>
-				@Html.DisplayName("Status")
-			</th>
-			<th></th>
-		</tr>
-
-		@foreach (var item in Model) {
-			var rowStyle = "";
-			if(item.Statue != null ){
-			var eStatue = Statue.StatusDictionary.FirstOrDefault(sd => sd.Value == item.Statue.Name).Key;
-				switch (eStatue) {
-					case EStatue.NotConfirmed:
-						rowStyle = "danger";
-						break;
-					case EStatue.Pending:
-						rowStyle = "warning";
-						break;
-					case EStatue.InProgrss:
-						rowStyle = "info";
-						break;
-					case EStatue.Sended:
-						rowStyle = "success";
-						break;
-				}
-			}
-			<tr class="@rowStyle">
-				<td>
-					@Html.DisplayFor(modelItem => item.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.InvoiceNo)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Product.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Start)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.AppType.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.User.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.User1.FullName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Statue.Name)
-				</td>
-				<td>
-					@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-					@{
-						if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
-							@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
-							@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+@using (Html.BeginForm("Index", "Applications")) {
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th>
+					@Html.DisplayName("Kod")
+				</th>
+				<th>
+					@Html.DisplayName("Nr faktury")
+				</th>
+				<th>
+					@Html.DisplayName("Produkt")
+				</th>
+				<th>
+					@Html.DisplayName("Data otwarcia")
+				</th>
+				<th>
+					@Html.DisplayName("Typ zlecenia")
+				</th>
+				<th>
+					@Html.DisplayName("Klient")
+				</th>
+				<th>
+					@Html.DisplayName("Serwisant")
+				</th>
+				<th>
+					<form class="form-inline">
+						@Html.DisplayName("Status")
+						@{
+							var listItems = EnumHelper.GetSelectList(typeof(EStatue));
+							foreach (var item in listItems) {
+								var en = (EStatue)Enum.Parse(typeof(EStatue), item.Value, true);
+								item.Text = Statue.StatusDictionary[en];
+							}
 						}
-					}
-				</td>
+						@Html.DropDownList("status", listItems, "Wszystkie", new { @class = "form-control", onchange = "this.form.submit();" })
+					</form>
+				</th>
+				<th></th>
 			</tr>
-		}
 
-	</table>
-</div>
+			@foreach (var item in Model) {
+				var rowStyle = "";
+				if (item.Statue != null) {
+					var eStatue = Statue.StatusDictionary.FirstOrDefault(sd => sd.Value == item.Statue.Name).Key;
+					switch (eStatue) {
+						case EStatue.NotConfirmed:
+							rowStyle = "danger";
+							break;
+						case EStatue.Pending:
+							rowStyle = "warning";
+							break;
+						case EStatue.InProgrss:
+							rowStyle = "info";
+							break;
+						case EStatue.Sended:
+							rowStyle = "success";
+							break;
+					}
+				}
+
+				<tr class="@rowStyle">
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.InvoiceNo)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Product.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Start)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.AppType.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.User.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.User1.FullName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Statue.Name)
+					</td>
+					<td>
+						@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+						@{
+							if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
+								@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+								@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+							}
+						}
+					</td>
+				</tr>
+			}
+
+		</table>
+	</div>
+}
 </body>
 </html>

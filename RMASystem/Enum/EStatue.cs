@@ -5,9 +5,9 @@
 // -----------------------------------------------------------------------
 
 public enum EStatue {
-NotConfirmed,
-Pending,
-InProgrss,
-Sended
+	NotConfirmed,
+	Pending,
+	InProgrss,
+	Sended
 }
 

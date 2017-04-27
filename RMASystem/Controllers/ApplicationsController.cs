@@ -25,7 +25,27 @@ namespace RMASystem.Controllers {
 		public ActionResult Index() {
 			var application =
 				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
-			return View(application.ToList());
+			return View(application.OrderByDescending(a => a.Start));
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Administrator,Serwisant")]
+		public ActionResult Index(string status) {
+			var application =
+					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
+
+
+			switch (status) {
+				case "0":
+					return View(application.Where(a => a.Statue.EName == EStatue.NotConfirmed));
+				case "1":
+					return View(application.Where(a => a.Statue.EName == EStatue.Pending));
+				case "2":
+					return View(application.Where(a => a.Statue.EName == EStatue.InProgrss));
+				case "3":
+					return View(application.Where(a => a.Statue.EName == EStatue.Sended));
+			}
+			return View(application.OrderByDescending(a => a.Start));
 		}
 
 		// GET: Applications/Details/5

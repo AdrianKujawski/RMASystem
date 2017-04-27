@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace RMASystem
 {
@@ -27,8 +28,10 @@ namespace RMASystem
 		[Display(Name = "Nazwa")]
 		[StringLength(30)]
 		public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+	    public EStatue EName => StatusDictionary.FirstOrDefault(sd => sd.Value == Name).Key;
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Application { get; set; }
 
 	    static public Dictionary<EStatue, string> StatusDictionary = new Dictionary<EStatue, string> {
