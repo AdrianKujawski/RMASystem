@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Routing;
 using RMASystem.Helpers;
 using RMASystem.Models.ViewModel;
 
@@ -29,11 +30,13 @@ namespace RMASystem.Controllers {
 		}
 
 		[HttpPost]
-		[Authorize(Roles = "Administrator,Serwisant")]
+		[Authorize(Roles = "Administrator,Serwisant, Klient")]
 		public ActionResult Index(string status) {
+			if (HttpContext.User.IsInRole("Klient")) {
+				return RedirectToAction("UserApplication", "Applications",new {state = status});
+			}
 			var application =
 					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
-
 
 			switch (status) {
 				case "0":
@@ -305,7 +308,7 @@ namespace RMASystem.Controllers {
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult UserApplication() {
+		public ActionResult UserApplication(string state) {
 			var userEmail = HttpContext.User.Identity.Name;
 			var currentUser = RMASystem.User.GetLogged(userEmail);
 			var application =
@@ -316,8 +319,19 @@ namespace RMASystem.Controllers {
 				.Include(a => a.Product)
 				.Include(a => a.Realization)
 				.Include(a => a.Result)
-				.Include(a => a.Statue);
-			return View("Index", application.ToList());
+				.Include(a => a.Statue).ToList();
+
+			switch (state) {
+				case "0":
+					return View("Index", application.Where(a => a.Statue.EName == EStatue.NotConfirmed));
+				case "1":
+					return View("Index", application.Where(a => a.Statue.EName == EStatue.Pending));
+				case "2":
+					return View("Index", application.Where(a => a.Statue.EName == EStatue.InProgrss));
+				case "3":
+					return View("Index", application.Where(a => a.Statue.EName == EStatue.Sended));
+				default: return View("Index", application.OrderByDescending(a => a.Start));
+			}
 		}
 
 		public ActionResult MessageHistory(int applicationId, string clientEMail) {
