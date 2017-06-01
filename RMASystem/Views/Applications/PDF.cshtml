@@ -1,0 +1,121 @@
+﻿@model Application
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="~/Content/bootstrap-theme.css"/>
+	<link rel="stylesheet" href="~/Content/bootstrap.css"/>
+	<meta name="viewport" content="width=device-width"/>
+	<title>PDF</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8"><img src="@Url.Content("~/Content/Img/oie_ZYtrXLjD6Syd.png")" alt="Logo" /></div>
+		<div class="col-xs-4">Miejsce wystawienia: <b>Elbląg</b></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-8">Data wystawienia: @DateTime.Now.ToShortDateString()</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-8">Serwisant: @Model.User1.FullName</div>
+	</div>
+	<br/><br/>
+
+	<div class="row">
+		<div class="col-xs-12">
+
+			<h3><b><p class="bg-info">Faktura nr: @Model.Name</p></b></h3>
+
+		</div>
+	</div>
+	<br/><br/>
+
+	<div class="row">
+		<div class="col-xs-6">
+			<h5><ins><b>Sprzedawca</b></ins></h5><br/>
+			<b>RMA System</b><br/>
+			<b>al. Grunwaldzka 1/23</b><br/>
+			<b>82-300 Elbląg</b><br/>
+			tel: <b>+48 601 487 414</b><br/>
+			e-mail: <b>kontakt@rmasystem.pl</b><br/>
+			bank: <b>Bank WBK</b><br/>
+			bank: <b>11 4584 1295 0000 1450 0147 8446</b><br/>
+		</div>
+		<div class="col-xs-6">
+			<h5><ins><b>Nabywca</b></ins></h5><br/>
+			<b>@Model.User.FullName</b><br/>
+			<b>@Model.User.Adress.Street</b><br/>
+			<b>@Model.User.Adress.ZipCode @Model.User.Adress.City</b><br/>
+			tel: <b>@Model.User.Phone</b><br/>
+			e-mail: <b>@Model.User.Email</b><br/>
+			bank: <b>@Model.User.BankAccount.Name</b><br/>
+			bank: <b>@Model.User.BankAccount.AccountNumber</b><br/>
+		</div>
+	</div>
+	<br/><br/>
+
+	<table class="table table-bordered">
+		<tr class="active">
+			<th>Lp.</th>
+			<th>Towar</th>
+			<th>Rezultat</th>
+			<th>Kwota netto</th>
+			<th>VAT</th>
+			<th>Kwota VAT</th>
+			<th>Kwota brutto</th>
+		</tr>
+		@{
+			decimal? cost, vat, netto, brutto;
+			cost = vat = netto = brutto = null;
+
+			if (Model.Cost != null) {
+				cost = Model.Cost;
+				vat = cost * 0.23m;
+				netto = cost - vat;
+				brutto = Model.Cost;
+			}
+			<tr>
+				<th>1</th>
+				<th>@Model.Product.Name</th>
+				<th>@Model.Result.Name</th>
+				<th>@(netto != null ? ((decimal)netto).ToString("#.##") : "0")</th>
+				<th>23%</th>
+				<th>@(vat != null ? ((decimal)vat).ToString("#.##") : "0")</th>
+				<th>@(cost != null ? ((decimal)cost).ToString("#.##") : "0")</th>
+			</tr>
+		}
+	</table>
+	<br/><br/>
+
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-6">
+			<ins>
+				<b>
+					<h4>
+						<p class="bg-info">Do zapłaty: @(cost != null ? ((decimal)cost).ToString("#.##") : "0") zł</p>
+					</h4>
+				</b>
+			</ins>
+		</div>
+	</div>
+	<br /><br /><br /><br />
+
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-2">
+			------------------------------------------<br/>
+			Osoba upoważniona do odbioru
+		</div>
+		<div class="col-xs-4 col-xs-offset-2">
+			------------------------------------------<br />
+			Osoba upoważniona do wystawienia
+		</div>
+	</div>
+</div>
+</body>
+</html>

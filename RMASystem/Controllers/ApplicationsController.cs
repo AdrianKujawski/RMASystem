@@ -14,6 +14,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using RMASystem.Helpers;
 using RMASystem.Models.ViewModel;
+using Rotativa;
 
 namespace RMASystem.Controllers {
 
@@ -185,6 +186,13 @@ namespace RMASystem.Controllers {
 				ModelState.AddModelError(string.Empty, "Nie wybrano serwisanta.");
 			}
 
+			application.Statue = db.Statue.FirstOrDefault(s => s.Id == application.Statue_Id);
+			application.Result = db.Result.FirstOrDefault(p => p.Id == application.Result_Id);
+
+			if (application.Statue?.EName == EStatue.Sended && application.Result == null) {
+				ModelState.AddModelError(string.Empty,"Nie wybrano rezultatu.");
+			}
+
 			if (ModelState.IsValid) {
 				db.Entry(application).State = EntityState.Modified;
 				if (IsStatueChanged(application, oldStatue)) {
@@ -340,6 +348,42 @@ namespace RMASystem.Controllers {
 				var model = new EmailsViewModel(emails, clientEMail);
 				return View(model);
 			
+		}
+
+		[Authorize(Roles = "Klient, Administrator,Serwisant")]
+		public ActionResult CreatePdf(int? id) {
+			var application =
+					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).FirstOrDefault(a => a.Id == id);
+
+			return View("PDF", application);
+		}
+
+		public ActionResult ExportPdf(int? id) {
+			if (id == null) {
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			var application =
+					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).FirstOrDefault(a => a.Id == id);
+			if (application == null) {
+				return HttpNotFound();
+			}
+
+			if (application.Statue?.EName == EStatue.Sended && application.Result == null) {
+				ModelState.AddModelError(string.Empty, "Nie wybrano rezultatu.");
+			}
+
+			if (application.Statue?.EName != EStatue.Sended) {
+				ModelState.AddModelError(string.Empty, "Można generować plik PDF, tylko gdy zgłoszenie ma status Wysłany.");
+			}
+
+			if (!ModelState.IsValid) {
+				return View("Details", application);
+			}
+			var result = new ActionAsPdf("CreatePdf", new {id = id}) {
+				FileName = Server.MapPath("~Content/Invoice.pdf")
+			};
+			return result;
 		}
 	}
 
