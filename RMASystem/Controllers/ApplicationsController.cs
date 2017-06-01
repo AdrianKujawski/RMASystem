@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
+using PagedList;
 using RMASystem.Helpers;
 using RMASystem.Models.ViewModel;
 using Rotativa;
@@ -20,36 +22,48 @@ namespace RMASystem.Controllers {
 
 	[Authorize]
 	public class ApplicationsController : Controller {
+		const int PageSize = 5;
 		RmaEntities db = new RmaEntities();
 
 		// GET: Applications
 		[Authorize(Roles = "Administrator,Serwisant")]
-		public ActionResult Index() {
+		public ActionResult Index(int? page) {
 			var application =
 				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
-			return View(application.OrderByDescending(a => a.Start));
+			application = application.OrderByDescending(a => a.Start);
+
+			var pageNumber = page ?? 1;
+			return View(application.ToPagedList(pageNumber, PageSize));
 		}
 
 		[HttpPost]
 		[Authorize(Roles = "Administrator,Serwisant, Klient")]
-		public ActionResult Index(string status) {
+		public ActionResult Index(string status, int? page) {
+			var pageNumber = page ?? 1;
+
 			if (HttpContext.User.IsInRole("Klient")) {
 				return RedirectToAction("UserApplication", "Applications",new {state = status});
 			}
 			var application =
 					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
-
+			IEnumerable<Application> apps = null;
 			switch (status) {
 				case "0":
-					return View(application.Where(a => a.Statue.EName == EStatue.NotConfirmed));
+					apps = application.Where(a => a.Statue.EName == EStatue.NotConfirmed);
+					return View(apps.ToPagedList(pageNumber, PageSize));
 				case "1":
-					return View(application.Where(a => a.Statue.EName == EStatue.Pending));
+					apps = application.Where(a => a.Statue.EName == EStatue.Pending);
+					return View(apps.ToPagedList(pageNumber, PageSize));
 				case "2":
-					return View(application.Where(a => a.Statue.EName == EStatue.InProgrss));
+					apps = application.Where(a => a.Statue.EName == EStatue.InProgrss);
+					return View(apps.ToPagedList(pageNumber, PageSize)); ;
 				case "3":
-					return View(application.Where(a => a.Statue.EName == EStatue.Sended));
+					apps = application.Where(a => a.Statue.EName == EStatue.Sended);
+					return View(apps.ToPagedList(pageNumber, PageSize));
 			}
-			return View(application.OrderByDescending(a => a.Start));
+			var sortedApplications = application.OrderByDescending(a => a.Start);
+			
+			return View(sortedApplications.ToPagedList(pageNumber, PageSize));
 		}
 
 		// GET: Applications/Details/5

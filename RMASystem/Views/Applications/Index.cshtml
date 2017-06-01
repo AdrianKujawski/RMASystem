@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Application>
+﻿@model PagedList.IPagedList<Application>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
 }
@@ -115,6 +117,10 @@
 			}
 
 		</table>
+		Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+		@Html.PagedListPager(Model, page => Url.Action("Index",
+					new { page, statue = Model.Select(m => m.Statue) }))
 	</div>
 }
 </body>
