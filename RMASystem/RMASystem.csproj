@@ -181,16 +181,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="RmaEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RmaEntity.edmx</DependentUpon>
-      <LastGenOutput>RmaEntity.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="RmaEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RmaEntity.edmx</DependentUpon>
-      <LastGenOutput>RmaEntity.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -199,6 +189,19 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Models\RmaEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+      <LastGenOutput>RmaEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RmaEntity.edmx.diagram">
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\RmaEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+      <LastGenOutput>RmaEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -254,6 +257,11 @@
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Helpers\UserAuthenctication.cs" />
+    <Compile Include="Models\RmaEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ViewModel\EmailsViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterUserViewModel.cs" />
@@ -277,11 +285,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="RmaEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RmaEntity.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
     </Compile>
@@ -302,13 +305,6 @@
     </Content>
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\UserPanel.cshtml" />
-    <EntityDeploy Include="RmaEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RmaEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="RmaEntity.edmx.diagram">
-      <DependentUpon>RmaEntity.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -386,6 +382,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\RmaEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RmaEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
