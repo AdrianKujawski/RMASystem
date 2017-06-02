@@ -42,7 +42,7 @@ namespace RMASystem.Controllers {
 			var pageNumber = page ?? 1;
 
 			if (HttpContext.User.IsInRole("Klient")) {
-				return RedirectToAction("UserApplication", "Applications",new {state = status});
+				return RedirectToAction("UserApplication", "Applications",new {state = status, page});
 			}
 			var application =
 					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
@@ -196,10 +196,6 @@ namespace RMASystem.Controllers {
 				ModelState.AddModelError(string.Empty, "Nie możesz zmienić statusu na poprzedni.");
 			}
 
-			if (application.Employee_Id == null) {
-				ModelState.AddModelError(string.Empty, "Nie wybrano serwisanta.");
-			}
-
 			application.Statue = db.Statue.FirstOrDefault(s => s.Id == application.Statue_Id);
 			application.Result = db.Result.FirstOrDefault(p => p.Id == application.Result_Id);
 
@@ -211,7 +207,9 @@ namespace RMASystem.Controllers {
 				db.Entry(application).State = EntityState.Modified;
 				if (IsStatueChanged(application, oldStatue)) {
 
+					AssignEmployee(application);
 					SetStatusDate(application);
+#if !DEBUG
 					var mailMessage = PrepareChangeStatusMessage(application);
 					var mailEntity = new Email {
 						Sender = mailMessage.From.ToString(),
@@ -223,6 +221,7 @@ namespace RMASystem.Controllers {
 					};
 					await SendMessage(mailMessage);
 					SaveMessage(mailEntity);
+#endif
 				}
 				db.SaveChanges();
 				return RedirectToAction("Index");
@@ -236,6 +235,12 @@ namespace RMASystem.Controllers {
 			ViewBag.Result_Id = new SelectList(db.Result, "Id", "Name", application.Result_Id);
 			ViewBag.Statue_Id = new SelectList(db.Statue, "Id", "Name", application.Statue_Id);
 			return View(application);
+		}
+
+		void AssignEmployee(Application application) {
+			var userEmail = HttpContext.User.Identity.Name;
+			var currentUser = RMASystem.User.GetLogged(userEmail);
+			application.Employee_Id = db.User.FirstOrDefault(u => u.Id == currentUser.Id).Id;
 		}
 
 		static void SaveMessage(Email mailEntity) {
@@ -330,7 +335,8 @@ namespace RMASystem.Controllers {
 			return RedirectToAction("Index");
 		}
 
-		public ActionResult UserApplication(string state) {
+		public ActionResult UserApplication(string state, int? page) {
+			var pageNumber = page ?? 1;
 			var userEmail = HttpContext.User.Identity.Name;
 			var currentUser = RMASystem.User.GetLogged(userEmail);
 			var application =
@@ -343,17 +349,24 @@ namespace RMASystem.Controllers {
 				.Include(a => a.Result)
 				.Include(a => a.Statue).ToList();
 
+			IEnumerable<Application> apps = null;
 			switch (state) {
 				case "0":
-					return View("Index", application.Where(a => a.Statue.EName == EStatue.NotConfirmed));
+					apps = application.Where(a => a.Statue.EName == EStatue.NotConfirmed);
+					return View("Index",apps.ToPagedList(pageNumber, PageSize));
 				case "1":
-					return View("Index", application.Where(a => a.Statue.EName == EStatue.Pending));
+					apps = application.Where(a => a.Statue.EName == EStatue.Pending);
+					return View("Index", apps.ToPagedList(pageNumber, PageSize));
 				case "2":
-					return View("Index", application.Where(a => a.Statue.EName == EStatue.InProgrss));
+					apps = application.Where(a => a.Statue.EName == EStatue.InProgrss);
+					return View("Index", apps.ToPagedList(pageNumber, PageSize)); ;
 				case "3":
-					return View("Index", application.Where(a => a.Statue.EName == EStatue.Sended));
-				default: return View("Index", application.OrderByDescending(a => a.Start));
+					apps = application.Where(a => a.Statue.EName == EStatue.Sended);
+					return View("Index", apps.ToPagedList(pageNumber, PageSize));
 			}
+			var sortedApplications = application.OrderByDescending(a => a.Start);
+
+			return View("Index", sortedApplications.ToPagedList(pageNumber, PageSize));
 		}
 
 		public ActionResult MessageHistory(int applicationId, string clientEMail) {

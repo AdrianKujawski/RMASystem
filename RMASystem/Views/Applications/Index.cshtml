@@ -104,20 +104,18 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.Statue.Name)
 					</td>
-					<td>
-						@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
-						@{
-							if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
-								@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
-								@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+					<td style="white-space: nowrap;">
+						@Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+							@if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
+								@Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+								@Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
 							}
-						}
 					</td>
 				</tr>
 			}
 
 		</table>
-		Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+		Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
 		@Html.PagedListPager(Model, page => Url.Action("Index",
 					new { page, statue = Model.Select(m => m.Statue) }))
