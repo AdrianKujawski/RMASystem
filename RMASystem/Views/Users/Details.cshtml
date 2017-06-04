@@ -49,14 +49,6 @@
             </dd>
     
             <dt>
-                @Html.DisplayName("Hasło")
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-    
-            <dt>
                 @Html.DisplayName("Miasto")
             </dt>
     
@@ -65,6 +57,22 @@
             </dd>
     
             <dt>
+                @Html.DisplayName("Ulica")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Adress.Street)
+            </dd>
+            
+            <dt>
+                @Html.DisplayName("Kod pocztowy")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Adress.ZipCode)
+            </dd>
+            
+            <dt>
                 @Html.DisplayName("Bank")
             </dt>
     
@@ -72,6 +80,14 @@
                 @Html.DisplayFor(model => model.BankAccount.Name)
             </dd>
     
+            <dt>
+                @Html.DisplayName("Nr Konta")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BankAccount.AccountNumber)
+            </dd>
+            
             <dt>
                 @Html.DisplayName("Rola")
             </dt>

@@ -21,7 +21,11 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
-    
+			@Html.HiddenFor(model => model.Password)
+			@Html.HiddenFor(model => model.Role_Id)
+			@Html.HiddenFor(model => model.Adress_Id)
+			@Html.HiddenFor(model => model.BankAccount_Id)
+			
             <div class="form-group">
                 @Html.Label("Imię", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -72,22 +76,46 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			@Html.Label("Miasto", htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Adress.City, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Adress.City, "", new { @class = "text-danger" })
+			</div>
+		</div>
 
-			<div class="form-group">
-                @Html.LabelFor(model => model.Adress_Id, "Adres", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Adress_Id", null, "-- Wybierz -- ", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Adress_Id, "", new { @class = "text-danger" })
-                </div>
-            </div>
+	    <div class="form-group">
+	        @Html.Label("Ulica", htmlAttributes: new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+	            @Html.EditorFor(model => model.Adress.Street, new { htmlAttributes = new { @class = "form-control" } })
+	            @Html.ValidationMessageFor(model => model.Adress.Street, "", new { @class = "text-danger" })
+	        </div>
+	    </div>
+
+	    <div class="form-group">
+	        @Html.Label("Kod pocztowy", htmlAttributes: new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+	            @Html.EditorFor(model => model.Adress.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+	            @Html.ValidationMessageFor(model => model.Adress.ZipCode, "", new { @class = "text-danger" })
+	        </div>
+	    </div>
+
+	    <div class="form-group">
+	        @Html.Label("Nazwa banku", htmlAttributes: new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+	            @Html.EditorFor(model => model.BankAccount.Name, new { htmlAttributes = new { @class = "form-control" } })
+	            @Html.ValidationMessageFor(model => model.BankAccount.Name, "", new { @class = "text-danger" })
+	        </div>
+	    </div>
+
+	    <div class="form-group">
+	        @Html.Label("Numer bankowy", htmlAttributes: new { @class = "control-label col-md-2" })
+	        <div class="col-md-10">
+	            @Html.EditorFor(model => model.BankAccount.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+	            @Html.ValidationMessageFor(model => model.BankAccount.AccountNumber, "", new { @class = "text-danger" })
+	        </div>
+	    </div>
     
-            <div class="form-group">
-                @Html.LabelFor(model => model.BankAccount_Id, "Konto bankowe", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("BankAccount_Id", null, "-- Wybierz --", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.BankAccount_Id, "", new { @class = "text-danger" })
-                </div>
-            </div>
 	}
 }
             <div class="form-group">

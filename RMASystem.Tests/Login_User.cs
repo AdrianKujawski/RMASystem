@@ -1,4 +1,4 @@
-﻿using RMASystem.Controllers;
+﻿using RMASystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace RMASystem.Controllers.Tests {
 		[Fact]
 		public void login_user_from_db() {
 			var email = "adrian.kujawski@outlook.com";
-			var password = "12345678";
+			var password = "adrian123";
 			var result = execute(email, password);
 
 			Assert.True(result);

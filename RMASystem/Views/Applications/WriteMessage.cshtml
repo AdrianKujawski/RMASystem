@@ -1,0 +1,37 @@
+﻿@using RMASystem.Models.ViewModel
+@model EmailsViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Historia wiadomości</title>
+</head>
+<body>
+
+@using (Html.BeginForm("SaveMessage", "Applications", FormMethod.Post)) {
+    @Html.HiddenFor(m => m.ClientEmail)
+    @Html.HiddenFor(m => m.WorkerEmail)
+    @Html.HiddenFor(m => m.ApplicationId)
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.MessageSubject, "Temat", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.MessageSubject, new { @class = "form-control", autocomplete = "off" })
+            </div>
+            
+            @Html.TextAreaFor(m => m.MessageContent, new { @class = "form-control", @rows = 5, margin = "50" })
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Wyślij" class="btn btn-success"/>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+</body>
+</html>

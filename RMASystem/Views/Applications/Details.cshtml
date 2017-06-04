@@ -196,7 +196,7 @@
 	@Html.ActionLink("Historia wiadomości", "MessageHistory", new { applicationId = Model.Id, clientEMail = Model.User.Email }, new { @class = "btn btn-primary btn-sm" })
 	@if (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Serwisant")) {
 		@Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
-		@Html.ActionLink("Generuj PDF", "ExportPdf", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
+		@Html.ActionLink("Faktura PDF", "ExportPdf", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm" })
 	}
 </p>
 </body>

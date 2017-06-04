@@ -173,44 +173,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Img\logo_black.png" />
+    <Content Include="Content\Img\logo_white.png" />
     <Content Include="Content\Img\oie_ZYtrXLjD6Syd.png" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Models\RmaEntity.Context.tt">
+    <Content Include="RmaEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RmaEntity.edmx</DependentUpon>
       <LastGenOutput>RmaEntity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\RmaEntity.edmx.diagram">
+    <Content Include="RmaEntity.edmx.diagram">
       <DependentUpon>RmaEntity.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\RmaEntity.tt">
+    <Content Include="RmaEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RmaEntity.edmx</DependentUpon>
       <LastGenOutput>RmaEntity.cs</LastGenOutput>
     </Content>
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Browsers\qt.browser" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.svg" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Icon.png" />
+    <None Include="packages.config" />
+    <None Include="Scripts\bootstrap.js" />
+    <None Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Views\Applications\WriteMessage.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -257,11 +256,6 @@
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Helpers\UserAuthenctication.cs" />
-    <Compile Include="Models\RmaEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RmaEntity.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ViewModel\EmailsViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterUserViewModel.cs" />
@@ -284,6 +278,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RmaEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RmaEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RmaEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>RmaEntity.tt</DependentUpon>
@@ -369,6 +368,7 @@
     <Content Include="Views\Account\EditDate.cshtml" />
     <Content Include="Views\Applications\MessageHistory.cshtml" />
     <Content Include="Views\Applications\PDF.cshtml" />
+    <None Include="Scripts\npm.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -384,7 +384,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\RmaEntity.edmx">
+    <EntityDeploy Include="RmaEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RmaEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>

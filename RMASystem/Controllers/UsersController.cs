@@ -92,12 +92,16 @@ namespace RMASystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Phone,Email,Password,Role_Id,Adress_Id,BankAccount_Id")] User user)
-        {
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Phone,Email,Password,Role_Id,Adress_Id,BankAccount_Id")] User user,[Bind(Include = "City,Street,ZipCode")] Adress adress,
+        [Bind(Include = "Name,AccountNumber")] BankAccount bankAccount) {
+            var lol = bankAccount == null;
+            var lol9 = adress == null;
             if (ModelState.IsValid)
             {
 				RMASystem.User.SetFirstLetterOfNameToUpper(user);
 	            db.Entry(user).State = EntityState.Modified;
+                user.Adress = adress;
+                user.BankAccount = bankAccount;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

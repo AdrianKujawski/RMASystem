@@ -5,30 +5,42 @@
 
 <html>
 <head>
-	<meta name="viewport" content="width=device-width"/>
-	<title>Historia wiadomości</title>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Historia wiadomości</title>
 </head>
 <body>
+
+@using (Html.BeginForm("SendMessage", "Applications", FormMethod.Post)) {
+    @Html.HiddenFor(m => m.ClientEmail)
+    @Html.HiddenFor(m => m.WorkerEmail)
+    @Html.HiddenFor(m => m.ApplicationId)
+    @Html.HiddenFor(m => m.SortedEmails)
+
+    <div class="form-group">
+        <input type="submit" value="Napisz" class="btn btn-success"/>
+    </div>
+}
+<br/>
+    
 @foreach (var email in Model.SortedEmails) {
-	var emailStyle = "panel-success";
-	var columnStyle = "col-md-4";
-	if (Model.ClientEmails.Contains(email)) {
-		emailStyle = "panel-primary";
-		columnStyle = "col-md-offset-2 col-md-4 col-md-offset-6";
-	}
+    var emailStyle = "panel-success";
+    var columnStyle = "col-md-4";
+    if (Model.ClientEmails.Contains(email)) {
+        emailStyle = "panel-primary";
+        columnStyle = "col-md-offset-2 col-md-4 col-md-offset-6";
+    }
 
-
-	<div class="row" style="Word-wrap: break-word;">
-		<div class="@columnStyle">
-			<div class="panel @emailStyle"> 
-				<div class="panel-heading">@Html.Label(email.Subject)</div>
-				<div class="panel-body">
-					<span style="white-space: pre-line">@email.Content</span>
-				</div>
-				<div class="panel-footer">@Html.Label("Wysłano: " + email.PostDate?.ToLongDateString() + " " + email.PostDate?.ToShortTimeString())</div>
-			</div>
-		</div>
-	</div>
+    <div class="row" style="Word-wrap: break-word;">
+        <div class="@columnStyle">
+            <div class="panel @emailStyle">
+                <div class="panel-heading">@Html.Label(email.Subject)</div>
+                <div class="panel-body">
+                    <span style="white-space: pre-line">@email.Content</span>
+                </div>
+                <div class="panel-footer">@Html.Label("Wysłano: " + email.PostDate?.ToLongDateString() + " " + email.PostDate?.ToShortTimeString())</div>
+            </div>
+        </div>
+    </div>
 }
 
 </body>

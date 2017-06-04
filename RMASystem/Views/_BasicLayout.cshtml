@@ -3,7 +3,6 @@
 
 <html>
 <head>
-	<link rel="stylesheet" href="~/Content/bootstrap-theme.css"/>
 	<link rel="stylesheet" href="~/Content/bootstrap.css"/>
 	<meta name="viewport" content="width=device-width"/>
 	<meta charset="utf-8"/>
@@ -16,7 +15,7 @@
 	<title>@ViewBag.Title</title>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -26,7 +25,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a href="@Url.Action("Index", "Account")" class="navbar-brand">
-				<img src="@Url.Content("~/Content/Img/oie_ZYtrXLjD6Syd.png")"  alt="Logo" />
+				<img src="@Url.Content("~/Content/Img/logo_white.png")"  alt="Logo" />
 			</a>
 		</div>
 
@@ -63,7 +62,7 @@
 				if (HttpContext.Current.User.IsInRole("Klient")) {
 					<ul class="nav navbar-nav">
 						<li>@Html.ActionLink("Dodaj zgłoszenie", "Create", "Applications")</li>
-						<li>@Html.ActionLink("Pokaż zgłoszenia", "UserApplication", "Applications")</li>
+						<li>@Html.ActionLink("Pokaż zgłoszenia", "Index", "Applications")</li>
 					</ul>
 				}
 			}
@@ -93,7 +92,38 @@
 	</div>
 </nav>
 <div class="container-fluid">
-		@RenderBody()
+	<div id="modal-container" class="modal fade" 
+		tabindex="-1" role="dialog">
+		<div class="modal-content">
+		</div>
+	</div>
+	
+	@RenderBody()
 </div>
+
+<script type="text/javascript">
+	$(function () {
+		// Initialize numeric spinner input boxes
+		//$(".numeric-spinner").spinedit();
+		// Initialize modal dialog
+		// attach modal-container bootstrap attributes to links with .modal-link class.
+		// when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+		$('body').on('click', '.modal-link', function (e) {
+			$(this).attr('data-target', '#modal-container');
+			$(this).attr('data-toggle', 'modal');
+		});
+		// Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+		$('body').on('click', '.modal-close-btn', function () {
+			$('#modal-container').modal('hide');
+		});
+		//clear modal cache, so that new content can be loaded
+		$('#modal-container').on('hidden.bs.modal', function () {
+			$(this).removeData('bs.modal');
+		});
+		$('#CancelModal').on('click', function () {
+			return false;
+		});
+	});
+</script>
 </body>
 </html>

@@ -26,44 +26,59 @@ namespace RMASystem.Controllers {
 		RmaEntities db = new RmaEntities();
 
 		// GET: Applications
-		[Authorize(Roles = "Administrator,Serwisant")]
+		[Authorize(Roles = "Administrator,Serwisant,Klient")]
 		public ActionResult Index(int? page) {
-			var application =
-				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue);
-			application = application.OrderByDescending(a => a.Start);
-
 			var pageNumber = page ?? 1;
-			return View(application.ToPagedList(pageNumber, PageSize));
+
+			var application =
+				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
+
+			if (HttpContext.User.IsInRole("Klient")) {
+				application = GetUserApps(application);
+				return View(application.ToPagedList(pageNumber, PageSize));
+			}
+
+			var sorted = application.OrderByDescending(a => a.Start);
+			return View(sorted.ToPagedList(pageNumber, PageSize));
 		}
 
 		[HttpPost]
 		[Authorize(Roles = "Administrator,Serwisant, Klient")]
 		public ActionResult Index(string status, int? page) {
 			var pageNumber = page ?? 1;
-
-			if (HttpContext.User.IsInRole("Klient")) {
-				return RedirectToAction("UserApplication", "Applications",new {state = status, page});
-			}
 			var application =
-					db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
+				db.Application.Include(a => a.AppType).Include(a => a.User).Include(a => a.User1).Include(a => a.Product).Include(a => a.Realization).Include(a => a.Result).Include(a => a.Statue).ToList();
+			
+			if (HttpContext.User.IsInRole("Klient")) {
+				application = GetUserApps(application);
+			}
+			
 			IEnumerable<Application> apps = null;
 			switch (status) {
 				case "0":
 					apps = application.Where(a => a.Statue.EName == EStatue.NotConfirmed);
-					return View(apps.ToPagedList(pageNumber, PageSize));
+					break;
 				case "1":
-					apps = application.Where(a => a.Statue.EName == EStatue.Pending);
-					return View(apps.ToPagedList(pageNumber, PageSize));
+					apps = application.Where(a => a.Statue.EName == EStatue.Pending);break;
 				case "2":
-					apps = application.Where(a => a.Statue.EName == EStatue.InProgrss);
-					return View(apps.ToPagedList(pageNumber, PageSize)); ;
+					apps = application.Where(a => a.Statue.EName == EStatue.InProgrss);break;
 				case "3":
-					apps = application.Where(a => a.Statue.EName == EStatue.Sended);
-					return View(apps.ToPagedList(pageNumber, PageSize));
+					apps = application.Where(a => a.Statue.EName == EStatue.Sended);break;
+			}
+
+			if (apps != null) {
+				apps.OrderByDescending(a => a.Start);
+				return View(apps.ToPagedList(pageNumber, PageSize));
 			}
 			var sortedApplications = application.OrderByDescending(a => a.Start);
-			
 			return View(sortedApplications.ToPagedList(pageNumber, PageSize));
+		}
+
+		List<Application> GetUserApps(List<Application> application) {
+			var userEmail = HttpContext.User.Identity.Name;
+			var currentUser = RMASystem.User.GetLogged(userEmail);
+			application = application.Where(a => a.Client_Id == currentUser.Id).ToList();
+			return application;
 		}
 
 		// GET: Applications/Details/5
@@ -335,6 +350,7 @@ namespace RMASystem.Controllers {
 			return RedirectToAction("Index");
 		}
 
+		[HttpPost]
 		public ActionResult UserApplication(string state, int? page) {
 			var pageNumber = page ?? 1;
 			var userEmail = HttpContext.User.Identity.Name;
@@ -372,7 +388,7 @@ namespace RMASystem.Controllers {
 		public ActionResult MessageHistory(int applicationId, string clientEMail) {
 			var context = new RmaEntities();
 				var emails = context.Email.Where(e => e.Application_Id == applicationId).ToList();
-				var model = new EmailsViewModel(emails, clientEMail);
+				var model = new EmailsViewModel(emails, clientEMail, applicationId);
 				return View(model);
 			
 		}
@@ -412,6 +428,45 @@ namespace RMASystem.Controllers {
 			};
 			return result;
 		}
+		
+		[HttpPost]
+		public ActionResult SendMessage(string clientEmail, string workerEmail, int applicationId, IEnumerable<Email> sortedEmails) {
+			var model = new EmailsViewModel(sortedEmails, clientEmail, applicationId);
+			return View("WriteMessage");
+		}
+		
+		[HttpPost]
+		public ActionResult SaveMessage(string clientEmail, string workerEmail, int applicationId, string messageContent, string messageSubject) {
+			string sender;
+			string reciper;
+
+			SetSenderAndReciper(clientEmail, workerEmail, out sender, out reciper);
+
+			var message = new Email {
+				Sender = sender,
+				Reciper = reciper,
+				Subject = messageSubject,
+				Application_Id = applicationId,
+				Content = messageContent,
+				PostDate = DateTime.Now,
+			};
+
+			SaveMessage(message);
+
+			return RedirectToAction("Details", new { id = applicationId});
+		}
+
+		void SetSenderAndReciper(string clientEmail, string workerEmail, out string sender, out string reciper) {
+			if (HttpContext.User.IsInRole("Klient")) {
+				sender = clientEmail;
+				reciper = workerEmail;
+			}
+			else {
+				sender = workerEmail;
+				reciper = clientEmail;
+			}
+		}
+		
 	}
 
 }
